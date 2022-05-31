@@ -1,0 +1,76 @@
+! System dpi:
+Xft.dpi: 161
+
+
+! Themes.
+
+! Nord
+#define c00 #2E3440
+#define c01 #3B4252
+#define c02 #434C5E
+#define c03 #4C566A
+#define c04 #D8DEE9
+#define c05 #E5E9F0
+#define c06 #ECEFF4
+#define c07 #8FBCBB
+#define c08 #88C0D0
+#define c09 #81A1C1
+#define c10 #5E81AC
+#define c11 #BF616A
+#define c12 #D08770
+#define c13 #EBCB8B
+#define c14 #A3BE8C
+#define c15 #B48EAD
+
+! St settings.
+*.alpha: 1.0
+*.background:   #222730
+*.foreground:   c04
+*.cursorColor:  c09
+*.color0: c00
+*.color1: c11
+*.color2: c14
+*.color3: c13
+*.color4: c09
+*.color5: c15
+*.color6: c08
+*.color7: c05
+*.color8: c03
+*.color9: c11
+*.color10: c14
+*.color11: c13
+*.color12: c09
+*.color13: c15
+*.color14: c07
+*.color15: c06
+
+! Dwm settings.
+dwm.normbordercolor: c01
+dwm.normbgcolor: c00
+dwm.normfgcolor: c05
+dwm.selbordercolor: c10
+dwm.selbgcolor: c09
+dwm.selfgcolor: c05
+dwm.block1fg: c13
+dwm.block2fg: c14
+dwm.block3fg: c12
+dwm.block4fg: c15
+dwm.block5fg: c10 
+
+! Dmenu settings.
+dmenu.normbgcolor: c00
+dmenu.normfgcolor: c05
+dmenu.normhgbgcolor: c00
+dmenu.normhgfgcolor: c04
+dmenu.selbgcolor: c09
+dmenu.selfgcolor: c05
+dmenu.selhgbgcolor: c13
+dmenu.selhgfgcolor: c01
+
+! Tabbed settings
+tabbed.normbgcolor: c00
+tabbed.normfgcolor: c09
+tabbed.selbgcolor: c09
+tabbed.selfgcolor: c05
+tabbed.urgbgcolor: c14
+tabbed.urgfgcolor: c13

@@ -1,0 +1,45 @@
+WM="qtile"
+
+# Start polkit manager
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Set keyboard layout
+setxkbmap -layout us,ru -option grp:alt_shift_toggle
+
+# load Xresources
+xrdb -load ~/.config/x11/Xresources
+
+# Dwm bar
+[ $WM = "dwm" ] && dwmblocks &
+
+# Wallpapers
+xwallpaper --zoom "$HOME/.local/share/bg"
+
+# Compositor
+picom --experimental-backends & 
+
+# Start notifications manager
+dunst &
+notify-send -a "System." "Hi !" -i "~/.config/dunst/icons/welcome.svg"
+
+# Start redshift
+redshift &
+
+# Load mpd playlist
+mpc load "Music"
+mpc play
+mpc pause
+
+# Key bindings.
+sxhkd &
+
+# Hide mouse cursor.
+unclutter --timeout 3 &
+
+# Screenshots.
+flameshot &
+
+while true; do
+   [ $WM = "qtile" ] && qtile start
+   [ $WM = "dwm" ] && dwm >> ~/.cache/dwm.log 2>&1
+done

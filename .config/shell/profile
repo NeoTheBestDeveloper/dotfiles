@@ -1,0 +1,53 @@
+#!/bin/zsh
+# Expand path.
+export PATH=$PATH:~/.local/share/scripts
+
+
+# Default programms.
+export EDITOR="nvim"
+export TERMINAL="st"
+export BROWSER="qutebrowser"
+
+# Clean up ~/
+export XDG_CONFIG_HOME="$HOME/.config"
+export DOWNLOAD_DIR="$HOME/Downloads"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export LESSHISTFILE="-"
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache/zsh}/history"
+export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
+export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+export GIT_CONFIG_SYSTEM="$HOME/.config/git/config"
+export TRASH_DIR="$HOME/.Trash"
+export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
+
+# Other programms settings.
+export WLR_DRM_NO_MODIFIERS=1
+export LESS=-R
+export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
+export VIEB_SITE_ISOLATION="strict"
+export VIEB_ACCELERATION="hardware"
+export FZF_DEFAULT_COMMAND='fd --type f -H""'
+export FZF_CTRL_T_COMMAND="command fd -L . --min-depth 1 | cut -b3-"
+export FZF_ALT_C_COMMAND="command fd -L . --min-depth 1 --type d | cut -b3-"
+
+# Lf icons.
+export LF_ICONS="tw= :st= :ow= :dt= :di= :fi= :ln= :or= :ex= :.config= :webpack.config.*= :README= :LICENSE= :.DS_Store= :.Dockerfile= :CMakeLists.txt= :.gitlab-ci.yml= :*.git= :*.edn= :*.pdf= :*.db= :*.hs= :*.vim= :*.org= :*.frm= :*.myd= :*.myi= :*.mkd= :*.ddf= :*.sqlite= :*.bib= :*.part= :*.torrent= :*.url= :*.link= :*.ass=
+:*.srt= :*.nfo= :*.psb= :*.psd= :*.xlsx= :*.c= :*.cpp= :*.cc= :*.h= :*.hh= :*.hpp= :*.css= :*.scss= :*.el= :*.clj= :*.py= :*.rb= :*.go= :*.html= :*.java= :*.md=
+:*.json= :*.sc= :*.scala= :*.php= :*.rs= :*.js= :*.ts= :*.kts= :*.gradle= :*.rss=>參 :*.bash= :*.cmd= :*.fish= :*.ps1= :*.sh= :*.zsh= :*.7z= :*.ace= :*.alz= :*.arc= :*.arj= :*.bz2= :*.bz= :*.cab= :*.cpio= :*.deb= :*.dwm= :*.dz= :*.ear= :*.esd=
+:*.gz= :*.jar= :*.lha= :*.lrz= :*.lz4= :*.lz= :*.lzh= :*.lzma= :*.lzo= :*.rar= :*.rpm= :*.rz= :*.sar= :*.swm= :*.t7z= :*.tar= :*.taz= :*.tbz2= :*.tbz= :*.tgz= :*.tlz= :*.txz= :*.tz= :*.tzo= :*.tzst= :*.war= :*.wim= :*.xz= :*.z= :*.zip= :*.zoo= :*.zst= :*.aac= :*.mp3= :*.alac= :*.flac= :*.m4a= :*.wav= :*.webm= :*.mka= :*.mid= :*.midi= :*.avi= :*.m2v= :*.m4v= :*.mkv= :*.mov= :*.mp4= :*.mp4v= :*.asf= :*.au= :*.bmp= :*.cgm= :*.dl= :*.emf= :*.flc= :*.fli= :*.flv= :*.gif= :*.gl= :*.jpeg= :*.jpg= :*.mjpeg= :*.mjpg= :*.mng= :*.mpc= :*.mpeg= :*.mpg= :*.nuv= :*.oga= :*.ogg= :*.ogm= :*.ogv= :*.ogx= :*.opus= :*.pbm= :*.pcx= :*.pgm= :*.png= :*.ppm= :*.qt= :*.ra= :*.rm= :*.rmvb= :*.spx= :*.svg= :*.svgz= :*.tga= :*.tif= :*.tiff= :*.vob= :*.wmv= :*.xbm= :*.xcf= :*.xpm= :*.xspf= :*.xwd= :*.yuv= :.git/= :.github/= :.config/= :node_modules/= :games/= :steam/= :.Downloads/= :Video/=ﳜ :Photo/= :Music/= :~/.dotfiles/= :~/.mozilla/= :~/.tor-browser/="
+
+# Start graphical server on user's current tty if not already running.
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"

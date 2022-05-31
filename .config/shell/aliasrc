@@ -1,0 +1,45 @@
+#### Aliases ###
+alias ls='exa -b --icons --group-directories-first'
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ll -a'
+alias nv='nvim'
+alias p='python3'
+alias i='ipython3'
+alias ..='cd ..'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias free='free -h'
+alias mkdir='mkdir -p'
+alias grep='grep --color=auto'
+alias sc='cd ~/.local/share/scripts; nv $(fzf)'
+alias sxiv='nsxiv -s f'
+alias upd='sudo pacman -Syu'
+alias pi="packages_menu pci"
+alias yi="packages_menu yi"
+alias mp="packages_menu mp"
+alias pu="sudo pacman -Syyu"
+alias sz="source $ZDOTDIR/.zshrc"
+alias sa="source $HOME/.config/shell/aliasrc"
+alias sv="source venv/bin/activate"
+alias bs='rm -f config.h && sudo make clean install'
+alias wl="sxiv -t $HOME/.local/share/wallpapers"
+alias bd="/bin/rm -f config.h && sudo make clean install && killall -q dwm"
+alias bs="/bin/rm -f config.h && sudo make clean install"
+alias bdb="/bin/rm -f blocks.h && sudo make clean install && killall -q dwmblocks && dwmblocks &; disown"
+alias ssh="TERM=vt100 ssh"
+alias pr="preview"
+alias y="ytfzf -t -l"
+alias o="python ~/Projects/Neo_System/Neo_open/nopen/main.py"
+alias gui_sandbox="qemu-system-x86_64 -enable-kvm -drive file=$HOME/Stuff/Iso/Virtual\ Machines/Sandbox/gui_sandbox.img -m 4G -smp 4 -vga virtio -display sdl,gl=on"
+alias ga="git add ."
+alias gst="git status"
+alias gc="git commit -m"
+alias gp="git push"
+alias gpl="git pull"
+alias mphone="simple-mtpfs --device 1 /mnt/Mobile -o enable-move"
+alias uphone="fusermount -u /mnt/Mobile"
+alias nw="python -m neowords"
+alias nf='neofetch'
+alias venv="python -m venv venv; source venv/bin/activate"
+alias config="/usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME"

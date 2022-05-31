@@ -1,0 +1,45 @@
+# Music control.
+XF86Audio{Prev,Next}
+	mpc -q {prev,next}; pkill -RTMIN+15 dwmblocks;  notify-send -a 'Start playing' "$(mpc current)"
+
+XF86AudioPlay
+    mpc toggle; pkill -RTMIN+15 dwmblocks
+
+# Radio control.
+shift + XF86Audio{Prev,Next}
+	radio {prev,next}; pkill -RTMIN+16 dwmblocks
+
+shift + XF86AudioPlay
+    radio toggle; pkill -RTMIN+16 dwmblocks
+
+# Volume.
+
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +5%; pkill -RTMIN+14 dwmblocks
+
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -5%; pkill -RTMIN+14 dwmblocks
+
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle; pkill -RTMIN+14 dwmblocks
+
+
+# Programms.
+
+super + shift + {t, b, z, p, l, c, r}
+    {telegram-desktop, $BROWSER, zathura, passmenu, librewolf, slock, $TERMINAL -e ranger}
+
+
+# Scripts.
+
+super + shift + {e, x, s, u, o, h}
+    {dmenu_configs, dmenu_powermenu, dmenu_search, file_upload, open -b, st -e htop}
+
+super + Tab
+    flameshot gui -c -p ~/Media/Photo/Screenshots
+
+super + control + r 
+    record start
+
+super + shift + control + r 
+    record stop

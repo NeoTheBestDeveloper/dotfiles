@@ -1,0 +1,29 @@
+local null_ls_status_ok, null_ls = pcall(require, "null-ls")
+
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
+local code_actions = null_ls.builtins.code_actions
+
+
+null_ls.setup({
+    debug = false,
+    sources = {
+        formatting.yapf,
+        formatting.djlint.with({ extra_filetypes = { 'html' } }),
+        diagnostics.djlint.with({ extra_filetypes = { 'html' } }),
+        formatting.clang_format.with({ extra_args = { "--style={IndentWidth: 4}" } }),
+        diagnostics.flake8,
+        diagnostics.mypy,
+        diagnostics.cppcheck,
+        code_actions.refactoring,
+        on_attach = function(client, bufnr)
+            if client.server_capabilities.documentFormattingProvider then
+                local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
+                vim.api.nvim_create_autocmd(
+                    "BufWritePre",
+                    { buffer = bufnr, callback = vim.lsp.buf.formatting_sync, group = group }
+                )
+            end
+        end,
+    },
+})
