@@ -1,0 +1,8 @@
+--- st.info
++++ st.info
+@@ -1,5 +1,4 @@
+ st-mono| simpleterm monocolor,
+-	Su,
+ 	acsc=+C\,D-A.B0E``aaffgghFiGjjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~,
+ 	am,
+ 	bce,

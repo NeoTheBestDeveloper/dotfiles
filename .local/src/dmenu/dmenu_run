@@ -1,0 +1,2 @@
+#!/bin/sh
+dmenu_path | dmenu -c -bw 5 -l 10 -i -p "Run:" "$@" | ${SHELL:-"/bin/sh"} &
