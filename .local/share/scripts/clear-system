@@ -1,0 +1,6 @@
+#!/bin/sh
+
+sudo pacman --noconfirm -Scc
+yay --noconfirm -Scc
+pacman -Qdt | cut -d " " -f 1 | xargs -r sudo pacman --noconfirm -Rs
+

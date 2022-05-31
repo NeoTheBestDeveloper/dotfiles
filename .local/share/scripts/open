@@ -1,0 +1,4 @@
+#!/bin/sh
+
+
+python ~/Projects/Neo_System/Neo_open/nopen/main.py $*

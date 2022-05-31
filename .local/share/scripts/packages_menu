@@ -1,0 +1,20 @@
+#!/bin/bash
+
+install_pac_pkg() {
+    pacman -Slq | fzf --multi --preview 'cat <(pacman -Si {1}) <(pacman -Fl {1} | awk "{print \$2}")' | xargs -ro sudo pacman -S
+}
+
+install_aur_pkg() { 
+        yay -Slq | fzf --multi --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk "{print \$2}")' | xargs -ro yay -S
+}
+
+manage_pkgs() {
+    pacman -Qqe | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns
+}
+
+
+case "$1" in 
+    pci) install_pac_pkg ;;
+    yi) install_aur_pkg ;;
+    mp) manage_pkgs ;;
+esac

@@ -1,0 +1,56 @@
+#!/usr/bin/python
+
+from os import environ, chdir
+from pathlib import Path
+from subprocess import run
+
+options = {
+    'alacritty': '~/.config/alacritty/alacritty.yml',
+    'aliases': '~/.config/shell/aliasrc',
+    'dmenu': '~/.local/src/dmenu/config.def.h',
+    'dunst': '~/.config/dunst/dunstrc',
+    'dwm': '~/.local/src/dwm/config.def.h',
+    'dwmblocks': '~/.local/src/dwmblocks/blocks.def.h',
+    'fd ignore': '~/.config/fd/ignore',
+    'mpd': '~/.config/mpd/mpd.conf',
+    'mpv': '~/.config/mpv/mpv.conf',
+    'nvim': '~/.config/nvim/init.lua',
+    'nsxiv': '~/.config/nsxiv/exec/key-handler',
+    'neofetch': '~/.config/neofetch/config.conf',
+    'picom': '~/.config/picom/picom.conf',
+    'profile': '~/.config/shell/profile',
+    'qtile': '~/.config/qtile/config.py',
+    'kitty': '~/.config/kitty/kitty.conf',
+    'ranger': '~/.config/ranger/rc.conf',
+    'redshift': '~/.config/redshift/redshift.conf',
+    'sclock': '~/.local/src/slock/config.def.h',
+    'scripts': '~/.local/share/scripts',
+    'slstatus': '~/.local/src/slstatus/config.def.h',
+    'st': '~/.local/src/st/config.def.h',
+    'sxhkd': '~/.config/sxhkd/sxhkdrc',
+    'qutebrowser': '~/.config/qutebrowser/config.py',
+    'tmux': '~/.config/tmux/tmux.conf',
+    'xinitrc': '~/.config/x11/xinitrc',
+    'xresources': '~/.config/x11/Xresources',
+    'zathura': '~/.config/zathura/zathurarc',
+    'zsh': '~/.config/zsh/.zshrc',
+}
+
+EDITOR_ENV = environ.get('EDITOR')
+EDITOR = 'nvim' if EDITOR_ENV is None else EDITOR_ENV
+
+TERMINAL_ENV = environ.get('TERMINAL')
+TERMINAL = 'st' if TERMINAL_ENV is None else TERMINAL_ENV
+
+dmenu_input = "\n".join(sorted(options.keys()))
+config = run(
+    ['dmenu', '-c', '-bw', '5', '-i', '-l', '10', '-p', 'Edit config:'],
+    text=True,
+    capture_output=True,
+    input=dmenu_input).stdout.replace('\n', '')
+
+if config in options:
+    path = Path(options[config]).expanduser()
+    print(path.parent.as_posix())
+    chdir(path.parent)
+    run([TERMINAL, '-e', EDITOR, path.as_posix()])

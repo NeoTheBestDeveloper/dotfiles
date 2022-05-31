@@ -1,0 +1,48 @@
+#!/usr/bin/python
+
+from shutil import copytree, rmtree
+from sys import argv, stderr
+from pathlib import Path
+from typing import NoReturn
+
+DUMP_PATH = Path('~/.local/share/configs/current').expanduser()
+DOC = """
+Usage:
+    -h\t\t\tShow this message.
+    --path <PATH>\tDump configs to <PAHT> dir.
+"""
+
+
+def init_dir(dump_path: Path) -> None:
+    if dump_path.exists():
+        new_path = dump_path.parents[0] / 'archive'
+        if new_path.exists():
+            rmtree(new_path)
+        dump_path.rename(new_path)
+    dump_path.mkdir(exist_ok=True, parents=True)
+
+def dump_dir(dir_path: Path, dump_path: Path) -> None:
+    copytree(dir_path,
+             dump_path / dir_path.parts[0],
+             ignore_dangling_symlinks=True)
+
+def print_error(error_msg: str, error_code: int = 1) -> NoReturn:
+    print(error_msg, file=stderr)
+    exit(error_code)
+
+
+def main(dump_path: Path) -> None:
+    if len(argv) != 1:
+        if argv[1] == '--path':
+            dump_path = Path(argv[2]).expanduser()
+        elif argv[1] in ('-h', '--help'):
+            print(DOC)
+            exit(0)
+
+    init_dir(dump_path)
+
+    # Dump scripts
+
+
+if __name__ == '__main__':
+    main(DUMP_PATH)

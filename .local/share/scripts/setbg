@@ -1,0 +1,14 @@
+#!/bin/sh
+
+
+wall_dir="$HOME/.local/share/wallpapers"
+bg_loc="${XDG_DATA_HOME:-$HOME/.local/share/}/bg"
+
+if [ -z "$1" ]; then
+  wall="$(find "$wall_dir" -type f -name "*.jpg" -o -name "*.png" | shuf -n1)"
+else
+  wall="$1"
+fi
+
+ln -sf "$(readlink -f "$wall")"  "$bg_loc"
+xwallpaper --zoom "$bg_loc"

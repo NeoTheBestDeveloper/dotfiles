@@ -1,0 +1,13 @@
+#!/bin/sh
+
+
+case $BUTTON in 
+    1) radio toggle ;;
+    3) dunstify -a "Music module." "Show current song 
+- Scroll to change.
+- Click to toggle." ;;
+    4) radio next ;;
+    5) radio prev ;; 
+esac
+
+echo "$(radio state)"

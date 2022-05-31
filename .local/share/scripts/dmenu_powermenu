@@ -1,0 +1,14 @@
+#!/bin/sh
+
+options="Logout
+Reboot
+Shutdown
+Suspend"
+
+case  "$(printf '%s\n' "$options" | dmenu -l 5 -c -bw 5 -p "Power menu:")" in
+    Shutdown) shutdown now ;;
+    Logout) loginctl kill-session self ;;
+    Reboot) reboot ;;
+    Suspend) slock systemctl suspend ;;
+    *) echo "Programm terminated!" && exit 1 ;;
+esac

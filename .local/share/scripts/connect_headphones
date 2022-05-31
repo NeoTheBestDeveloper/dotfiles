@@ -1,0 +1,5 @@
+#!/bin/sh
+
+hp_mac="20:1B:88:6A:49:E4"
+
+bluetoothctl connect "$hp_mac"

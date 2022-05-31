@@ -1,0 +1,121 @@
+#!/usr/bin/python
+
+from os import getpid, system
+from sys import argv, stderr
+from pathlib import Path
+from subprocess import run
+
+urls = (
+    ('https://live.musopen.org:8085/streamvbr0', 'Musopen radio', '~/Downloads/musopen.jpg'),
+    ('https://www.youtube.com/watch?v=5qap5aO4i9A', 'Lo-Fi radio', '~/Downloads/lofiradio.jpg'),
+    ('https://www.youtube.com/watch?v=kgx4WGK0oNU', 'jazz/lofi hip hop radio', '~/Downloads/jazzlofi.jpg'),
+    ('https://www.youtube.com/watch?v=Dx5qFachd3A', 'Relaxing Jazz Piano Radio', '~/Downloads/jazzpiaon.jpg'),
+)
+
+DB_PATH = Path('~/.cache/radio.db').expanduser()
+
+
+def init_db() -> None:
+    with open(DB_PATH, 'wt', encoding='utf-8') as db_file:
+        db_file.write('0\n-1\n')
+
+
+def get_current_id() -> int:
+    with open(DB_PATH, 'rt', encoding='utf-8') as db_file:
+        return int(db_file.readlines()[0].replace('\n', ''))
+
+
+def get_radio_pid() -> int:
+    with open(DB_PATH, 'rt', encoding='utf-8') as db_file:
+        return int(db_file.readlines()[1].replace('\n', ''))
+
+
+def set_current_id(new_id: int) -> None:
+    radio_pid = get_radio_pid()
+    with open(DB_PATH, 'wt', encoding='utf-8') as db_file:
+        db_file.write(f'{new_id}\n{radio_pid}\n')
+
+
+def set_radio_pid(radio_pid: int) -> None:
+    current_id = get_current_id()
+    with open(DB_PATH, 'wt', encoding='utf-8') as db_file:
+        db_file.write(f'{current_id}\n{radio_pid}\n')
+
+
+def play_radio(radio_id: int) -> None:
+    system(f'dunstify -a "Start playing" "{urls[radio_id][1]}" -i {urls[radio_id][2]}')
+    set_radio_pid(getpid())
+    try:
+        run(['mpv', '--no-video', urls[radio_id][0]])
+    except KeyboardInterrupt:
+        stop_radio()
+        exit(0)
+    except Exception as e:
+        print(e)
+        stop_radio()
+        exit(1)
+
+
+def stop_radio() -> None:
+    old_pid = get_radio_pid()
+    if old_pid != -1:
+        set_radio_pid(-1)
+        system(f'pkill -TERM -P {old_pid}')
+
+
+def main() -> None:
+    if DB_PATH.exists():
+        current_radio_id = get_current_id()
+    else:
+        current_radio_id = 0
+        init_db()
+
+    if len(argv) == 1:
+        print('Error: no command.', file=stderr)
+        exit(1)
+
+    if argv[1] == 'play':
+        stop_radio()
+        play_radio(current_radio_id)
+
+    elif argv[1] == 'toggle':
+        if get_radio_pid() == -1:
+            play_radio(current_radio_id)
+        else:
+            system(f'dunstify -a "Stop playling" "{urls[current_radio_id][1]}" -i {urls[current_radio_id][2]}')
+            stop_radio()
+
+    elif argv[1] == 'stop':
+        system(f'dunstify -a "Stop playling" "{urls[current_radio_id][1]}" -i {urls[current_radio_id][2]}')
+        stop_radio()
+
+    elif argv[1] == 'next':
+        if current_radio_id == len(urls) - 1:
+            current_radio_id = 0
+        else:
+            current_radio_id += 1
+        set_current_id(current_radio_id)
+        stop_radio()
+        play_radio(current_radio_id)
+
+    elif argv[1] == 'prev':
+        if current_radio_id == 0:
+            current_radio_id = len(urls) - 1
+        else:
+            current_radio_id -= 1
+        set_current_id(current_radio_id)
+        stop_radio()
+        play_radio(current_radio_id)
+
+    elif argv[1] == 'state':
+        if get_radio_pid() == -1:
+            print('Stopped')
+        else:
+            print(urls[current_radio_id][1])
+    else:
+        print(f'Error: unknow command "{argv[1]}".', file=stderr)
+        exit(1)
+
+
+if __name__ == "__main__":
+    main()

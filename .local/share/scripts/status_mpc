@@ -1,0 +1,43 @@
+#!/bin/bash
+
+export isNextPlaylist="0"
+set_playlist() { # $1 - playlist name.
+    if [ ! -z "$1" ]; then
+        mpc clear
+        mpc load "$1"
+        mpc play
+    fi
+}
+
+is_current_playlist() { # $1 - playlist name.
+    if [ ! -z "$1" ]; then
+        c_length=$(mpc playlist | wc -l)
+        p_length=$(mpc playlist "$1" | wc -l)
+        [ "$c_length" -eq "$p_length" ] && echo "1" || echo "0"
+    fi
+}
+
+# Prints the current song in mpd.
+case $BUTTON in
+    1) mpc toggle ;;
+    2) playlists=$(mpc lsplaylists | sed -e "/\.m3u/d")
+       last_playlist=$(echo "$playlists" | tail -n 1)
+
+       [ "$(is_current_playlist $last_playlist)" -eq "1" ] && \
+       set_playlist "$(echo "$playlists" | head -n 1)" && exit 0
+
+       echo "$playlists" | while read playlist; do
+            [ "$isNextPlaylist" -eq "1" ] && set_playlist "$playlist" && break
+            [ $(is_current_playlist "$playlist")  -eq "1" ] && export isNextPlaylist="1" 
+       done
+       ;;
+    3) dunstify -a "Music module." "Show current song 
+- Scroll to change.
+- Click to toggle.
+- Middle click to change playlist." ;;
+    4) mpc next ;;
+    5) mpc prev ;;
+    6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+echo "$(mpc current)"

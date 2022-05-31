@@ -1,0 +1,15 @@
+#!/bin/sh
+
+start_record ()
+{
+    date=$(date "+%Y_%m_%d_%H_%M")
+    ffmpeg -video_size 3840x2160 -framerate 25 -f x11grab -i :0.0+0,0 "$HOME/Media/Video/Screencasts/${date}_record.mp4" &
+    dunstify -a ffmpeg -u low  "Record started."
+}
+
+case "$1" in
+    "start") start_record ;;
+    "stop") pkill ffmpeg ;;
+    *) echo "Unknow command" ;;
+esac
+

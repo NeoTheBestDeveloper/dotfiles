@@ -1,0 +1,12 @@
+#!/bin/sh
+
+case $BUTTON in
+    1) setsid -f "$TERMINAL" -e "/bin/zsh" "-c" "sudo pacman -Syu" ;;
+    2) dunstify -a "Updates module." "Aviable to update:     ""$(checkupdates | cut -d ' ' -f 1)" ;;
+    3) dunstify -a "Updates module." "Module show updates count.
+- Click to update.
+- Middle click to view updates." ;;
+    6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+echo "" $(checkupdates | wc -l)

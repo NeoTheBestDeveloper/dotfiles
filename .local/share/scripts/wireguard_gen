@@ -1,0 +1,174 @@
+#!/bin/sh 
+
+get_help() {
+    echo "Wireguard gen 1.0
+    Tool for automatization creating wireguard configs.
+
+USAGE:
+    wireguard_gen [OPTIONS]
+
+EXAMPLES:
+    Generate 20 client configs, which adress wil be start from 10.8.0.11 and
+    instead server config will be created add_peers.sh script.
+
+    wireguard_gen -i 127.0.0.1 -p 51820 -o client_config -k <KEY> -n 10 -c 20  
+    ./add_peers.sh >> /etc/wireguard/<SERVER_CONFIG_NAME>
+
+    Generate 10 client configs with server config (wg0.conf), which include all peers.
+
+    wireguard_gen -i 127.0.0.1 -p 51820 -o client_config -c 10 -s wg0 
+
+OPTIONS:
+    -i, --ip <IP>                   Server ip adress.
+    -p, --port <PORT>               Server port when wireguard work.
+    -k, --server_pubkey <KEY>       Server publickey, which will be used in client 
+                                    configs.
+    -o, --output <FILE>             Name for generated client configs. If configs are 
+                                    several, names will be FILE_NUMBER.conf.
+    -s, --server <FILE>             Set wireguard server config name. If it is not 
+                                    void, will be generated server config with clients
+                                    configs and server pubkey. In another case you
+                                    must set server pubkey with -k|--server_pubkey and
+                                    instead server config will be generated add_peers 
+                                    script, which add peers from generated configs to 
+                                    server config.
+    -n, --number <N>                Start number for client virtual adresses (by 
+                                    default 1). Adresses will be start from 
+                                    10.8.0.N+1.
+    -c, --count <N>                 Client configs count (by default 1).
+    -h, --help                      Get help.
+
+AUTHOR:
+    Neo:
+        email - kiankasey91@gmail.com
+        github - https://github.com/neothebestdeveloper
+"
+}
+
+extend_add_peers() { # "$1" - client_pubkey, "$2" - number.
+    # Add peer to add_peers.sh script.
+    printf '
+echo "
+[Peer]
+PublicKey = %s
+AllowedIPs = 10.8.0.%d/32"\n' $1 $(expr $2 + 1) >> add_peers.sh
+}
+
+add_peer() { # "$1" - client_pubkey, "$2" - peer_num
+    # Add peer to server config.
+    echo "
+[Peer]
+PublicKey = $1
+AllowedIPs = 10.8.0.$(expr $2 + 1)/32" >> wg0.conf
+}
+
+
+create_client_config () { # "$1" - output_file, "$2" - number.
+    private_key=$(wg genkey)
+    [ -z "$2" ] && config_name="$1.conf" || \
+    config_name="$1_$2.conf"
+    echo "[Interface]
+Address = 10.8.0.$(expr $2 + 1)/32
+PrivateKey = $private_key 
+DNS = 8.8.8.8
+
+[Peer]
+PublicKey = $server_pubkey
+Endpoint = $server_ip:$server_port
+AllowedIPs = 0.0.0.0/0" > $config_name
+    echo $(echo $private_key | wg pubkey)
+}
+
+create_server_config() { # "$1" - interface_name 
+    private_key=$(wg genkey)
+    echo "[Interface]
+Address = 10.8.0.1/24
+PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+ListenPort = $server_port
+PrivateKey = $private_key" > $1.conf
+    echo $(echo $private_key | wg pubkey)
+}
+
+
+### Main script part. ### 
+
+# Parametrs.
+output_file=
+config_number=1
+configs_count=1
+interface_name=
+server_ip=
+server_port=
+server_pubkey=
+
+# Handle parametrs.
+
+while [ ! -z "$1" ] ; do
+    case "$1" in
+        -i|--ip)
+            shift 
+            server_ip="$1"
+            ;;
+        -p|--port)
+            shift 
+            server_port="$1"
+            ;;
+        -k|--server_pubkey)
+            shift 
+            server_pubkey="$1"
+            ;;
+        -o|--output) 
+            shift
+            if [ ! -z "$1" ]; then 
+                output_file="$1"             
+            else
+                echo "Error: void output" >&2 
+                exit 1
+            fi
+        ;;
+        -h|--help)
+            get_help
+            exit 0
+            ;;
+        -s|--server)
+            shift
+            interface_name="$1"
+            ;;
+        -c|--count)
+            shift
+            configs_count="$1"
+            ;;
+        -n|--number)
+            shift
+            config_number="$1"
+            ;;
+        *)  
+            echo "Error: unknown parametr $1" >&2
+            exit 1
+            ;;
+    esac
+    shift
+done    
+
+if [ ! -z "$interface_name" ]; then 
+    # Create server config.
+    server_pubkey=$(create_server_config $interface_name)
+else 
+    # Create add_peers.sh script.
+    echo '#!/bin/sh' > add_peers.sh 
+    chmod +x "add_peers.sh"
+fi
+
+# Create client config/configs.
+for i in $(seq $config_number $(expr $config_number + $configs_count - 1)); do 
+    [ "$configs_count" -eq 1 ] && unset i
+    client_pubkey=$(create_client_config $output_file $i)
+    if [ ! -z "$interface_name" ]; then  
+        add_peer $client_pubkey $i
+    else 
+        extend_add_peers $client_pubkey $i
+    fi
+done
+
+### End. ###

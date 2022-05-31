@@ -1,0 +1,33 @@
+#!/usr/bin/python
+
+from os import popen, environ
+from subprocess import run
+
+engines = {
+    'Archwiki': 'https://wiki.archlinux.org/index.php?search=',
+    'Duckduckgo': 'https://duckduckgo.com/?q=',
+    'Github': 'https://github.com/search?q=',
+    'Searx': 'http://localhost:8888/search?q=',
+    'Wiby': 'https://wiby.me/?q=',
+    'Wikipedia': 'https://en.wikipedia.org/wiki/',
+    'Youtube': 'https://www.youtube.com/results?search_query=',
+}
+
+BROWSER_ENV = environ.get('BROWSER')
+BROWSER = 'librewolf' if BROWSER_ENV is None else BROWSER_ENV
+
+dmenu_input = "\n".join(sorted(engines.keys()))
+engine = run([
+    'dmenu', '-bw', '5', '-c', '-i', '-l', '10', '-p', 'Choose search engine:'
+],
+             text=True,
+             capture_output=True,
+             input=dmenu_input).stdout.replace('\n', '')
+
+if engine in engines:
+    engine_url = engines[engine]
+    query = popen(f'dmenu -bw 5 -c -i -l 10 -p "Searching: {engine}"').read()
+
+    if query:
+        url = engine_url + query
+        run([BROWSER, url])
