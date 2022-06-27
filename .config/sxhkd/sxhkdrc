@@ -26,8 +26,8 @@ XF86AudioMute
 
 # Programms.
 
-super + shift + {t, b, z, p, l, c, r}
-    {telegram-desktop, $BROWSER, zathura, passmenu, librewolf, slock, $TERMINAL -e ranger}
+super + shift + {t, b, z, p, l, c, r, d, n}
+    {telegram-desktop, $BROWSER, zathura, passmenu, librewolf, slock, $TERMINAL -e ranger, discord, obsidian}
 
 
 # Scripts.

@@ -68,3 +68,7 @@ keymap("n", "<leader>g", ":lua _LAZYGIT_TOGGLE()<cr>", opts)
 
 -- Analise code tree.
 keymap("n", "<leader>a", "<cmd>SymbolsOutline<cr>", opts)
+
+-- Toggle conceleal level
+keymap("n", "<leader>c", "<cmd>set conceleallevel=3<cr>", opts)
+keymap("n", "<leader>C", "<cmd>set conceleallevel=0<cr>", opts)

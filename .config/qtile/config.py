@@ -59,15 +59,20 @@ def change_playlist() -> None:
         set_playlist(playlists[current_playlist_index + 1])
 
 
-def get_updates_list() -> str:
-    updates = run(['checkupdates'], capture_output=True, text=True).stdout
-    updates_list = updates.split()[::4]
-    return "\n".join(updates_list)
-
-
 def get_radio_state() -> str:
     return run(['radio', 'state'], capture_output=True,
                text=True).stdout.replace('\n', '')
+
+
+def check_updates() -> str:
+    return "\n".join([
+        line.split()[0] for line in popen('checkupdates').read().split('\n')
+        if line
+    ])
+
+
+def updates_count() -> str:
+    return str(len(popen('checkupdates').read().split('\n')) - 1)
 
 
 desktops = {
@@ -75,9 +80,9 @@ desktops = {
     '': [Match(wm_class=['qutebrowser'])],
     '': [Match()],
     '': [Match(wm_class=['Chromium', 'Navigator'])],
-    'ﴬ': [Match()],
+    'ﴬ': [Match(wm_class=['obsidian'])],
     '': [Match(wm_class=['TelegramDesktop'])],
-    'ﱘ': [Match()],
+    'ﱘ': [Match(wm_class=['discord'])],
     '': [Match(wm_class=['virt-manager'])],
 }
 groups = [Group(d, matches=desktops.get(d)) for d in desktops]
@@ -158,7 +163,7 @@ update_widget_callbacks = {
     lazy.spawn(f'{terminal} -e /bin/zsh -c "sudo pacman -Syu"'),
     'Button3':
     lazy.spawn(
-        f'dunstify -a "Updates module." "Aviable to update: {get_updates_list()}"'
+        f'dunstify -a "Updates module." "Aviable to update: {check_updates()}"'
     ),
 }
 
@@ -224,12 +229,11 @@ def init_widgets_list() -> list:
             foreground=colors['nord12'],
             mouse_callbacks=update_widget_callbacks,
         ),
-        CheckUpdates(
-            distro='Arch_checkupdates',
-            display_format='{updates}',
-            no_update_string='0',
-            colour_no_updates=colors['nord12'],
-            colour_have_updates=colors['nord12'],
+        GenPollText(
+            update_interval=1,
+            func=updates_count,
+            font='Fira Code Nerd Font Mono',
+            foreground=colors['nord12'],
             mouse_callbacks=update_widget_callbacks,
         ),
         Spacer(15),

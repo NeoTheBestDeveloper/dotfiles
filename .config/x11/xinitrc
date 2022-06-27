@@ -1,4 +1,4 @@
-WM="qtile"
+WM="dwm"
 
 # Start polkit manager
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
@@ -38,6 +38,12 @@ unclutter --timeout 3 &
 
 # Screenshots.
 flameshot &
+
+# Sync files. 
+syncthing --no-browser &
+
+# Custom lock.
+xss-lock slock &
 
 while true; do
    [ $WM = "qtile" ] && qtile start

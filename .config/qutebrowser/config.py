@@ -14,6 +14,7 @@ config.set('content.javascript.enabled', True, 'https://github.com')
 config.set('content.javascript.enabled', True, 'http://localhost:8888')
 config.set('content.cookies.accept', 'never')
 config.set('content.cookies.accept', 'all', 'http://localhost:8888')
+config.set('content.cookies.accept', 'all', 'http://localhost:8000')
 config.set('content.cookies.accept', 'no-3rdparty', 'https://github.com')
 config.set('content.autoplay', False)
 config.set('content.blocking.method', 'both')
@@ -45,7 +46,10 @@ config.bind('M', 'hint links spawn --detach mpv {hint-url}')
 config.bind('A', 'hint links spawn mpv {hint-url} --no-video')
 config.bind('Z', 'hint links spawn download_yt {hint-url}')
 config.bind(
-    'I', 'hint images spawn --output-messages wget -P ' +
+    'I', 'hint images spawn --output-messages aria2c -d ' +
+    Path("~/Downloads/Browser").expanduser().as_posix() + ' {hint-url}')
+config.bind(
+    'C', 'hint links spawn --output-messages aria2c -d ' +
     Path("~/Downloads").expanduser().as_posix() + ' {hint-url}')
 config.bind('xt', 'config-cycle tabs.show never always')
 config.bind('pt', 'tab-pin')

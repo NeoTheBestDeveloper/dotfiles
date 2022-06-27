@@ -106,9 +106,12 @@ return require("packer").startup(function()
         end,
         ft = { "markdown" },
     }) -- Makrkdown preview.
+    use("preservim/vim-markdown")
+    use("godlygeek/tabular")
     use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
     use("windwp/nvim-ts-autotag") -- Auto html tags.
     use("lukas-reineke/cmp-under-comparator") -- Better autocomplete sorting.
+    use("f3fora/cmp-spell")
 
     if packer_bootstrap then
         require("packer").sync()

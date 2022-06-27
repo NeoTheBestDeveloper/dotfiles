@@ -1,21 +1,55 @@
+window:
+  padding:
+    x: 6
+    y: 6
+
+  dynamic_padding: false
+
+  opacity: 1.0
+  title: Alacritty
+  class:
+    instance: Alacritty
+    general: Alacritty
+
 font:
   normal:
-    family: FiraCode Nerd Font Mono
-    style: Retina
+    family: Hack Nerd Font Mono
+    style: Regular
 
   bold:
-    family: FiraCode Nerd Font Mono
+    family: Hack Nerd Font Mono
     style: Bold
 
   italic:
-    family: Hack
+    family: Hack Nerd Font Mono
     style: Italic
 
-  bold_italic:
-    family: FiraCode Nerd Font Mono
-    style: Bold Italic
   size: 14
 
+scrolling:
+  history: 5000
+
+
+
+draw_bold_text_with_bright_colors: true
+
+
+# font:
+#   normal:
+#     family: FiraCode Nerd Font Mono
+#     style: Retina
+#
+#   bold:
+#     family: FiraCode Nerd Font Mono
+#     style: Bold
+#
+#   italic:
+#     family: Mononoki Nerd Font
+#     style: Italic
+#
+#   bold_italic:
+#     family: FiraCode Nerd Font Mono
+#     style: Bold Italic
 # Colors (Nord)
 colors:
    # Default colors
@@ -43,12 +77,4 @@ colors:
      blue:    '#81A1C1'
      magenta: '#B48EAD'
      cyan:    '#8FBCBB'
-     white:   '#ECEFF4'  
-
-draw_bold_text_with_bright_colors: true
-# Window setup
-window:
-  opacity: 1.0
-  padding:
-    x: 6
-    y: 6
+     white:   '#ECEFF4' 

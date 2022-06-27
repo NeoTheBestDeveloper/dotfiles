@@ -40,6 +40,7 @@ vim.opt.updatetime = 300
 
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.conceallevel = 3
-vim.opt.concealcursor = "niv"
+vim.opt.concealcursor = "nv"
 vim.opt.hidden = true
 vim.opt.showmode = false
+vim.opt.spelllang = { 'en_us', 'ru' }

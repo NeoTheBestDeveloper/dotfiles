@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/oleg/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
+  ["cmp-spell"] = {
+    loaded = true,
+    path = "/home/oleg/.local/share/nvim/site/pack/packer/start/cmp-spell",
+    url = "https://github.com/f3fora/cmp-spell"
+  },
   ["cmp-under-comparator"] = {
     loaded = true,
     path = "/home/oleg/.local/share/nvim/site/pack/packer/start/cmp-under-comparator",
@@ -261,6 +266,11 @@ _G.packer_plugins = {
     path = "/home/oleg/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
     url = "https://github.com/simrat39/symbols-outline.nvim"
   },
+  tabular = {
+    loaded = true,
+    path = "/home/oleg/.local/share/nvim/site/pack/packer/start/tabular",
+    url = "https://github.com/godlygeek/tabular"
+  },
   ["telescope-media-files.nvim"] = {
     loaded = true,
     path = "/home/oleg/.local/share/nvim/site/pack/packer/start/telescope-media-files.nvim",
@@ -285,6 +295,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/oleg/.local/share/nvim/site/pack/packer/start/vim-bbye",
     url = "https://github.com/moll/vim-bbye"
+  },
+  ["vim-markdown"] = {
+    loaded = true,
+    path = "/home/oleg/.local/share/nvim/site/pack/packer/start/vim-markdown",
+    url = "https://github.com/preservim/vim-markdown"
   }
 }
 
