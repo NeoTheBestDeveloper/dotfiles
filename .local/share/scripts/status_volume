@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # Prints the current volume or 🔇 if muted.
-echo $BUTTON
 case $BUTTON in
 	1) setsid -f "$TERMINAL" -e pulsemixer ;;
 	2) pamixer -t ;;
@@ -13,7 +12,7 @@ case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-[ $(pamixer --get-mute)  = "true" ] && echo 🔇 && echo "$(date) mute" >> $HOME/volume.log && exit
+[ $(pamixer --get-mute)  = "true" ] && echo 🔇 && exit
 
 vol="$(pamixer --get-volume)"
 

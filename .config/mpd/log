@@ -599,3 +599,45 @@ Jul 26 19:01 : player: played "Songs/Mob Psycho 100 OP.mp3"
 Jul 26 19:04 : player: played "Songs/Mob Psycho 100 OP.mp3"
 Jul 26 19:06 : player: played "Songs/Mob Psycho 100 OP.mp3"
 Jul 26 19:15 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 26 22:42 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 27 11:10 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 27 11:14 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 27 11:16 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 27 11:20 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 27 11:24 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 27 11:27 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 28 10:41 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 28 22:00 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 28 22:29 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 28 22:31 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 28 22:44 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 28 22:46 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 28 22:52 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 28 22:56 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 29 06:52 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 29 13:08 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 29 13:43 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 29 17:20 : pipewire_output: Decoder is too slow; playing silence to avoid xrun
+Jul 29 17:20 : exception: Failed to open '/home/neo/Media/Music/Playlists/LO-FI.m3u.m3u': No such file or directory
+Jul 29 17:20 : exception: Failed to open '/home/neo/Media/Music/LO-FI.m3u': No such file or directory
+Jul 29 17:20 : exception: No such playlist
+Jul 29 17:20 : player: played "Songs/Blood Water.mp3"
+Jul 29 17:20 : exception: Failed to open '/home/neo/Media/Music/Playlists/LO-FI.m3u.m3u': No such file or directory
+Jul 29 17:20 : exception: Failed to open '/home/neo/Media/Music/LO-FI.m3u': No such file or directory
+Jul 29 17:20 : exception: No such playlist
+Jul 29 17:20 : player: played "Songs/Консьюмеризм.mp3"
+Jul 29 17:20 : exception: Failed to open '/home/neo/Media/Music/Playlists/LO-FI.m3u.m3u': No such file or directory
+Jul 29 17:20 : exception: Failed to open '/home/neo/Media/Music/LO-FI.m3u': No such file or directory
+Jul 29 17:20 : exception: No such playlist
+Jul 29 17:20 : exception: Failed to open '/home/neo/Media/Music/Playlists/LO-FI.m3u.m3u': No such file or directory
+Jul 29 17:20 : exception: Failed to open '/home/neo/Media/Music/LO-FI.m3u': No such file or directory
+Jul 29 17:20 : exception: No such playlist
+Jul 29 17:20 : pipewire_output: Decoder is too slow; playing silence to avoid xrun
+Jul 30 08:19 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 30 15:50 : output: Failed to play on "Pepewire Sound Server" (pipewire): connection error
+Jul 30 15:50 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 30 15:52 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jul 30 15:56 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jun 30 07:00 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jun 30 09:52 : player: played "Songs/Mob Psycho 100 OP.mp3"
+Jun 30 20:07 : player: played "Songs/Mob Psycho 100 OP.mp3"

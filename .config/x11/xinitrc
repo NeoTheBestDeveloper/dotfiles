@@ -7,15 +7,13 @@ WM="dwm"
 setxkbmap -layout us,ru -option grp:alt_shift_toggle
 
 # load Xresources
-xrdb -load ~/.config/x11/Xresources
-
-# Start volume stuff.
-pipewire &
-pipewire-pulse &
-pipewire-media-session &
+xrdb -load ~/.config/x11/Xresources 
 
 # Wallpapers
-xwallpaper --zoom "$HOME/.local/share/bg"
+xwallpaper --zoom "$HOME/.local/share/bg" 
+
+# Start volume stuff.
+start_pipewire &
 
 # Start notifications manager
 dunst &
@@ -37,10 +35,7 @@ flameshot &
 picom --experimental-backends &
 
 # Load mpd playlist
-mpd
-mpc load "Music"
-mpc play
-mpc pause
+start_mpd &
 
 # Sync files.
 syncthing --no-browser &
@@ -54,5 +49,4 @@ syncthing --no-browser &
 while true; do
    [ $WM = "qtile" ] && qtile start
    [ $WM = "dwm" ] && dwm 
-   # [ $WM = "dwm" ] && dwm >> ~/.cache/dwm.log 2>&1
 done
