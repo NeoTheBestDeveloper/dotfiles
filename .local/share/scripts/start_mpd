@@ -1,0 +1,6 @@
+#!/bin/sh 
+
+mpd
+mpc load "Music"
+mpc play
+mpc pause
