@@ -47,14 +47,15 @@ static const char *fonts[] = {
 static const char *tags[] = {"", "", "", "", "ﴬ", "", "ﱘ", ""};
 
 static const Rule rules[] = {
-    /* class      		instance    	title       tags mask     isfloating
+    /* class      		instance    	title       tags mask isfloating
        monitor */
     {"librewolf", NULL, NULL, 1 << 3, 0, -1},
     {"Virt-manager", NULL, NULL, 1 << 7, 0, -1},
     {"TelegramDesktop", NULL, NULL, 1 << 5, 0, -1},
     {"Chromium", NULL, NULL, 1 << 3, 0, -1},
     {"Navigator", NULL, NULL, 1 << 3, 0, -1},
-    {TERM_CLASS, NULL, NULL, 1 << 1, 0, -1},
+    {"obsidian", NULL, NULL, 1 << 4, 0, -1},
+    {"qutebrowser", NULL, NULL, 1 << 1, 0, -1},
 };
 
 /* layout(s) */

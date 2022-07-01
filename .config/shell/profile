@@ -2,6 +2,8 @@
 # Expand path.
 export PATH=$PATH:~/.local/share/scripts
 
+# Gentoo stuff.
+export $(dbus-launch)
 
 # Default programms.
 export EDITOR="nvim"

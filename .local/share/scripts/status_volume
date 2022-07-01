@@ -4,18 +4,18 @@
 echo $BUTTON
 case $BUTTON in
 	1) setsid -f "$TERMINAL" -e pulsemixer ;;
-	2) pamixer -t ;;
-	4) pactl set-sink-volume @DEFAULT_SINK@ +5% ;;
-	5) pactl set-sink-volume @DEFAULT_SINK@ -5% ;;
+	2) pulsemixer --toggle-mute ;;
+	4) pulsemixer --change-volume +5 ;;
+	5) pulsemixer --change-volume -5 ;;
 	3) dunstify -a  "📢 Volume module." "Shows volume 🔊
 - Middle click to mute.
 - Scroll to change." ;;
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-[ $(pamixer --get-mute)  = "true" ] && echo 🔇 && exit
+[ $(pulsemixer --get-mute)  = "1" ] && echo 🔇 && exit
 
-vol="$(pamixer --get-volume)"
+vol="$(pulsemixer --get-volume | cut -d ' ' -f 2)"
 
 if [ "$vol" -gt "70" ]; then
 	icon="🔊"

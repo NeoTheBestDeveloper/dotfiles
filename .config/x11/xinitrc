@@ -1,19 +1,22 @@
 WM="dwm"
 
-# Start polkit manager
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
 # Set keyboard layout
 setxkbmap -layout us,ru -option grp:alt_shift_toggle
 
 # load Xresources
 xrdb -load ~/.config/x11/Xresources
 
+# Start polkit manager
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
 # Dwm bar
 [ $WM = "dwm" ] && dwmblocks &
 
 # Wallpapers
-xwallpaper --zoom "$HOME/.local/share/bg"
+xwallpaper --zoom "$HOME/.local/share/bg" &
+
+# Volume staff.
+/usr/bin/gentoo-pipewire-launcher &
 
 # Compositor
 picom --experimental-backends & 
@@ -26,15 +29,13 @@ notify-send -a "System." "Hi !" -i "~/.config/dunst/icons/welcome.svg"
 redshift &
 
 # Load mpd playlist
-mpc load "Music"
-mpc play
-mpc pause
+start_mpd &
 
 # Key bindings.
 sxhkd &
 
 # Hide mouse cursor.
-unclutter --timeout 3 &
+unclutter -idle 3 &
 
 # Screenshots.
 flameshot &
@@ -47,5 +48,5 @@ xss-lock slock &
 
 while true; do
    [ $WM = "qtile" ] && qtile start
-   [ $WM = "dwm" ] && dwm >> ~/.cache/dwm.log 2>&1
+   [ $WM = "dwm" ] && dbus-launch --exit-with-session dwm 
 done

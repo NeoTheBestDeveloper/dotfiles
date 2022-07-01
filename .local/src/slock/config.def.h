@@ -1,13 +1,12 @@
 /* user and group to drop privileges to */
-static const char *user  = "oleg";
-static const char *group = "oleg";
+static const char *user = "neo";
+static const char *group = "neo";
 
 static const char *colorname[NUMCOLS] = {
-	[INIT] =   "black",     /* after initialization */
-	[INPUT] =  "#5E81AC",   /* during input */
-	[FAILED] = "#BF616A",   /* wrong password */
+    [INIT] = "black",     /* after initialization */
+    [INPUT] = "#5E81AC",  /* during input */
+    [FAILED] = "#BF616A", /* wrong password */
 };
-
 
 /* treat a cleared input like a wrong password (color) */
 static const int failonclear = 1;
@@ -34,4 +33,6 @@ static const char *message = "Don't touch my pc.";
 static const char *text_color = "#ECEFF4";
 
 /* text size (must be a valid size) */
-static const char *font_name = "Fira Code Nerd Font:size:pixelsize=48:antialias=true:autohint=true:style=Retina";
+static const char *font_name =
+    "Fira Code Nerd "
+    "Font:size:pixelsize=48:antialias=true:autohint=true:style=Retina";

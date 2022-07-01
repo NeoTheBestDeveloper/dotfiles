@@ -20,7 +20,7 @@ config.set('content.autoplay', False)
 config.set('content.blocking.method', 'both')
 config.set('content.geolocation', False)
 config.set('zoom.default', '150%')
-config.set('downloads.location.directory', "~/Downloads")
+config.set('downloads.location.directory', "~/Downloads/Browser")
 config.set('tabs.show', 'never')
 config.set('statusbar.show', 'in-mode')
 config.set('url.default_page', 'http://localhost:8888')
@@ -50,7 +50,7 @@ config.bind(
     Path("~/Downloads/Browser").expanduser().as_posix() + ' {hint-url}')
 config.bind(
     'C', 'hint links spawn --output-messages aria2c -d ' +
-    Path("~/Downloads").expanduser().as_posix() + ' {hint-url}')
+    Path("~/Downloads/Browser").expanduser().as_posix() + ' {hint-url}')
 config.bind('xt', 'config-cycle tabs.show never always')
 config.bind('pt', 'tab-pin')
 config.bind('<Ctrl-Shift-j>', 'scroll down')
