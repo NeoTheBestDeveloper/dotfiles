@@ -16,14 +16,14 @@ xrdb -load ~/.config/x11/Xresources
 xwallpaper --zoom "$HOME/.local/share/bg" &
 
 # Volume staff.
-/usr/bin/gentoo-pipewire-launcher &
+start_pipewire &
 
 # Compositor
 picom --experimental-backends & 
 
 # Start notifications manager
 dunst &
-notify-send -a "System." "Hi !" -i "~/.config/dunst/icons/welcome.svg"
+notify-send -a "System." "" "Hi !" -i "~/.config/dunst/icons/welcome.svg"
 
 # Start redshift
 redshift &
@@ -46,7 +46,10 @@ syncthing --no-browser &
 # Custom lock.
 xss-lock slock &
 
+# Search engine.
+/usr/bin/uwsgi --ini /etc/uwsgi/searxng.ini &
+
 while true; do
    [ $WM = "qtile" ] && qtile start
-   [ $WM = "dwm" ] && dbus-launch --exit-with-session dwm 
+   [ $WM = "dwm" ] && dwm 
 done

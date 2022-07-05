@@ -1,9 +1,9 @@
-from os import environ, popen
+from os import environ, popen, system
 from subprocess import run
 
 from libqtile import bar, hook, qtile
 from libqtile.widget import GroupBox, Clock, CheckUpdates, TextBox, \
-                            Volume,  Spacer, Mpd2, WindowName, GenPollText
+                            Volume,  Spacer, Mpd2, WindowName, GenPollText, Backlight
 from libqtile.layout import Floating, MonadTall
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.command import lazy
@@ -24,55 +24,20 @@ def disable_floating(window):
         window.cmd_disable_floating()
 
 
-# Functions for widgets.
-def get_current_playlist(playlists: list[str]) -> str:
-    """Calculate hash of songs list for each playlist and
-    for current songs. It's need, beacause mpd don't memorize current
-    playlist."""
-    playlists_hash = [
-        hash(popen(f'mpc playlist "{playlist}"').read())
-        for playlist in playlists
-    ]
-    current_playlist_hash = hash(popen('mpc playlist').read())
-
-    for playlist, hash_ in zip(playlists, playlists_hash):
-        if hash_ == current_playlist_hash:
-            return playlist
-    return 'Music'
-
-
-def set_playlist(playlist: str) -> None:
-    run(['mpc', 'clear'])
-    run(['mpc', 'load', playlist])
-    run(['mpc', 'play'])
-
-
-def change_playlist() -> None:
-    """Start play next playlist. Playlist order like in loop."""
-    playlists = popen('mpc lsplaylists').read().split('\n')[:-1]
-    current_playlist = get_current_playlist(playlists)
-    current_playlist_index = playlists.index(current_playlist)
-
-    if current_playlist_index == len(playlists) - 1:
-        set_playlist(playlists[0])
-    else:
-        set_playlist(playlists[current_playlist_index + 1])
-
-
 def get_radio_state() -> str:
-    return run(['radio', 'state'], capture_output=True,
-               text=True).stdout.replace('\n', '')
+    return popen('radio state').read().replace('\n', '')
 
 
-def check_updates() -> str:
-    return "\n".join([
-        line.split()[0] for line in popen('checkupdates').read().split('\n')
-        if line
-    ])
+def get_battery_status() -> str:
+    return popen('status_battery').read().replace('\n', '')
 
 
-def updates_count() -> str:
-    return str(len(popen('checkupdates').read().split('\n')) - 1)
+def get_volume_status() -> str:
+    return popen('status_volume').read().replace('\n', '')
+
+
+def toggle_playlist() -> None:
+    system('toggle_playlist')
 
 
 desktops = {
@@ -158,15 +123,6 @@ widget_defaults = dict(
 
 extension_defaults = widget_defaults.copy()
 
-update_widget_callbacks = {
-    'Button1':
-    lazy.spawn(f'{terminal} -e /bin/zsh -c "sudo pacman -Syu"'),
-    'Button3':
-    lazy.spawn(
-        f'dunstify -a "Updates module." "Aviable to update: {check_updates()}"'
-    ),
-}
-
 
 def init_widgets_list() -> list:
     """Create a widget list."""
@@ -191,7 +147,7 @@ def init_widgets_list() -> list:
                  'stop': '■'
              },
              padding=10,
-             mouse_callbacks={'Button2': change_playlist}),
+             mouse_callbacks={'Button2': toggle_playlist}),
         TextBox(text='怜',
                 width=25,
                 font='Fira Code Nerd Font Mono',
@@ -222,32 +178,31 @@ def init_widgets_list() -> list:
             },
         ),
         Spacer(15),
-        TextBox(
-            text='',
-            fontsize=30,
-            font='Fira Code Nerd Font Mono',
-            foreground=colors['nord12'],
-            mouse_callbacks=update_widget_callbacks,
-        ),
-        GenPollText(
-            update_interval=1,
-            func=updates_count,
-            font='Fira Code Nerd Font Mono',
-            foreground=colors['nord12'],
-            mouse_callbacks=update_widget_callbacks,
-        ),
-        Spacer(15),
         Clock(
             format='  %b %d %a %I:%M',
             foreground=colors['nord10'],
         ),
         Spacer(15),
-        Volume(fmt='  {}',
-               foreground=colors['nord15'],
-               step=5,
-               mouse_callbacks={
-                   'Button3': lazy.spawn(f'{terminal} -e pulsemixer')
-               }),
+        Backlight(
+            backlight_name='amdgpu_bl0',
+            change_command='brightnessctl set {0}%',
+            step=5,
+            fmt=' {}',
+            update_interval=0.2,
+            foreground=colors['nord7'],
+        ),
+        Spacer(15),
+        GenPollText(
+            func=get_volume_status,
+            update_interval=0.2,
+            foreground=colors['nord14'],
+        ),
+        Spacer(15),
+        GenPollText(
+            func=get_battery_status,
+            update_interval=60,
+            foreground=colors['nord14'],
+        ),
         Spacer(15),
     ]
 

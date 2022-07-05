@@ -1,15 +1,25 @@
 #!/bin/sh
 
+DIMENSIONS=$(xdpyinfo | grep 'dimensions:' | awk '{print $2}')
+RECORD_CMD="ffmpeg -video_size $DIMENSIONS -framerate 25 -f x11grab -i :0.0+0,0 -c:v libx264rgb -crf 0 -preset ultrafast"
+VIDEO_DIR="$HOME/Media/Video/Screencasts"
+VIDEO_PATH=$VIDEO_DIR/"$(date '+%Y_%m_%d_%H_%M')_record.mp4"
+
 start_record ()
 {
-    date=$(date "+%Y_%m_%d_%H_%M")
-    ffmpeg -video_size 3840x2160 -framerate 25 -f x11grab -i :0.0+0,0 "$HOME/Media/Video/Screencasts/${date}_record.mp4" &
-    dunstify -a ffmpeg -u low  "Record started."
+    $RECORD_CMD $VIDEO_PATH &
+    dunstify -a ffmpeg -u low "" "Record started."
+}
+
+stop_record ()
+{
+    pkill ffmpeg 
+    dunstify -a ffmpeg -u low "" "Record stopped."
 }
 
 case "$1" in
     "start") start_record ;;
-    "stop") pkill ffmpeg ;;
+    "stop") stop_record ;;
     *) echo "Unknow command" ;;
 esac
 

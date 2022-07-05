@@ -75,6 +75,7 @@ enum {
     SchemeBlock3,
     SchemeBlock4,
     SchemeBlock5,
+    SchemeBlock6,
 };
 enum {
     NetSupported,

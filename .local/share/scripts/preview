@@ -1,3 +1,0 @@
-#!/bin/sh
-
-pandoc -V fontenc=T2A "$1" -o /tmp/preview.pdf && devour zathura /tmp/preview.pdf

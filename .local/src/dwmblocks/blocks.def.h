@@ -5,7 +5,9 @@ static const Block blocks[] = {
     {"", "echo ' 📻 '$(status_radio)", 5, 16},
     {"", "echo $(status_mpc)", 5, 15},
     {"", "status_time", 60, 13},
-    {"", "echo $(status_volume)'  '", 1, 14},
+    {"", "echo $(status_brightness)", 1, 12},
+    {"", "echo $(status_volume)", 1, 14},
+    {"", "echo $(status_battery)' '", 60, 11},
 };
 
 // sets delimeter between status commands. NULL character ('\0') means no

@@ -73,7 +73,7 @@ bindkey '^e' edit-command-line
 
 ### Plugins ###
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source $ZDOTDIR/plugins/zsh-command-not-found/command-not-found.plugin.zsh
+source $ZDOTDIR/plugins/zsh-command-not-found/command-not-found.plugin.zsh
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $ZDOTDIR/plugins/completion.zsh
 source $ZDOTDIR/plugins/key-bindings.zsh

@@ -8,7 +8,7 @@ Suspend"
 pidof systemd && power_manager="systemctl" || power_manager="loginctl" 
 
 case  "$(printf '%s\n' "$options" | dmenu -l 5 -c -bw 5 -p "Power menu:")" in
-    Shutdown) shutdown now ;;
+    Shutdown) $power_manager poweroff ;;
     Logout) loginctl kill-session self ;;
     Reboot) loginctl reboot ;;
     Suspend) $power_manager suspend ;;

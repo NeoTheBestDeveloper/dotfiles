@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # Prints the current volume or 🔇 if muted.
-echo $BUTTON
 case $BUTTON in
 	1) setsid -f "$TERMINAL" -e pulsemixer ;;
 	2) pulsemixer --toggle-mute ;;

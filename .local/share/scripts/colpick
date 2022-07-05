@@ -3,4 +3,4 @@
 color="$(colorpicker --short --one-shot)"
 echo "$color"
 echo "$color" | tr -d '\n' | xclip -selection clipboard
-notify-send " " "<span color='$color'><b>$color</b></span><span> Copied to clipboard!</span>"
+dunstify -a "Colorpicker" " " "<span color='$color'><b>$color</b></span><span> Copied to clipboard!</span>"

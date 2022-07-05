@@ -35,6 +35,7 @@ static char *colors[][3] = {
     [SchemeBlock3] = {block3fg, normbgcolor, normbordercolor},
     [SchemeBlock4] = {block4fg, normbgcolor, normbordercolor},
     [SchemeBlock5] = {block5fg, normbgcolor, normbordercolor},
+    [SchemeBlock6] = {block6fg, normbgcolor, normbordercolor},
 };
 
 /* Fonts */
@@ -86,6 +87,7 @@ ResourcePref resources[] = {
     {"block3fg", STRING, &block3fg},
     {"block4fg", STRING, &block4fg},
     {"block5fg", STRING, &block5fg},
+    {"block6fg", STRING, &block6fg},
     {"borderpx", INTEGER, &borderpx},
     {"snap", INTEGER, &snap},
     {"showbar", INTEGER, &showbar},

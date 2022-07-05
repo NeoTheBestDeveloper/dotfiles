@@ -42,7 +42,7 @@ Xft.dpi: 161
 *.color12: c09
 *.color13: c15
 *.color14: c07
-*.color15: c06
+*.color15: c15
 
 ! Dwm settings.
 dwm.normbordercolor: c01
@@ -56,6 +56,7 @@ dwm.block2fg: c14
 dwm.block3fg: c12
 dwm.block4fg: c15
 dwm.block5fg: c10 
+dwm.block6fg: c15
 
 ! Dmenu settings.
 dmenu.normbgcolor: c00

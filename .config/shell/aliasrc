@@ -43,4 +43,4 @@ alias nw="python -m neowords"
 alias nf='neofetch'
 alias venv="python -m venv venv; source venv/bin/activate"
 alias config="/usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME"
-alias notes="git --git-dir=$HOME/Notes/.git --work-tree=$HOME/Notes"
+alias del="trash-cli"
