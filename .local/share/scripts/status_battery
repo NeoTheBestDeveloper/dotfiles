@@ -1,0 +1,13 @@
+#!/bin/sh
+
+BATTERY=$(acpi -b | awk '{print $4}' | tr -d '%,')
+
+if [ $BATTERY -gt 75 ]; then 
+    echo " $BATTERY%"
+elif [ $BATTERY -gt 50 ]; then 
+    echo " $BATTERY%"
+elif [ $BATTERY -gt 25 ]; then
+    echo " $BATTERY%" 
+else
+    echo " $BATTERY%"
+fi
