@@ -1,0 +1,57 @@
+title-text: "Neo Boot"
+title-font: "Fira_Code_Retina_Nerd_Font_Complete_Mono.pf2"
+title-color: "#E5E9F0"
+desktop-image: "bg.png"
+terminal-box: "inbox_*.png"
+terminal-box: "terminal_box_*.png"
+terminal-left: "0"
+terminal-top: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+terminal-border: "0"
+
+
++ boot_menu {
+	left = 40%-250
+	top = 50%-100
+	width = 900
+	height = 600
+	selected_item_color = "#8FBCBB"
+	item_color = "#E5E9F0"
+	selected_item_pixmap_style = "button_*.png"
+	icon_width = 36
+	icon_height = 36
+	item_icon_space = 20
+	item_height = 40
+	item_padding = 2
+	item_spacing = 10
+	selected_item_pixmap_style = "select_*.png"
+}
+
++ progress_bar {
+        left = 50%-300
+        top = 50%+200
+        width = 600
+        height = 10
+      
+        id = "__timeout__"
+        text = "@TIMEOUT_NOTIFICATION_SHORT@"
+      
+	text_color = "#E5E9F0"
+	bar_style = *"
+	highlight_style = "*"
+}
+
++ label {
+        left = 50%-300
+        top = 50%+240
+        height = 30
+        width = 600
+      
+        color = "#8FBCBB"
+      
+        align = "center"
+      
+        text = "@KEYMAP_SHORT@"
+}
+
