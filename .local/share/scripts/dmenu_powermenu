@@ -6,9 +6,9 @@ Shutdown
 Suspend"
 
 case  "$(printf '%s\n' "$options" | dmenu -l 5 -c -bw 5 -p "Power menu:")" in
-    Shutdown) shutdown now ;;
+    Shutdown) loginctl poweroff ;;
     Logout) loginctl kill-session self ;;
-    Reboot) reboot ;;
-    Suspend) slock systemctl suspend ;;
+    Reboot) loginctl reboot ;;
+    Suspend) loginctl suspend ;;
     *) echo "Programm terminated!" && exit 1 ;;
 esac

@@ -1,0 +1,20 @@
+#!/usr/bin/python
+
+from os import popen
+
+
+def get_battery_state() -> str:
+    battery_value = int(popen('acpi -b ').read().split()[3][:-2])
+    if battery_value <= 25:
+        battery_icon = ''
+    elif 25 < battery_value <= 50:
+        battery_icon = ''
+    elif 50 < battery_value <= 75:
+        battery_icon = ''
+    else:
+        battery_icon = ''
+    return f'{battery_icon} {battery_value}%'
+
+
+if __name__ == "__main__":
+    print(get_battery_state())

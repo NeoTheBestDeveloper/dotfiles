@@ -38,3 +38,8 @@ tmux_start () {
 
     tmux attach -t $PROJECT_NAME
 }
+
+get_bare_configs() {
+    git clone https://github.com/neothebestdeveloper/dotfiles --bare $HOME/.local/share/dotfiles
+     config config status.showUntrackedFiles no
+}

@@ -1,4 +1,4 @@
-WM="qtile"
+WM="dwm"
 
 # Start polkit manager
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
@@ -9,37 +9,50 @@ setxkbmap -layout us,ru -option grp:alt_shift_toggle
 # load Xresources
 xrdb -load ~/.config/x11/Xresources
 
-# Dwm bar
-[ $WM = "dwm" ] && dwmblocks &
+# Start volume stuff.
+pipewire &
+pipewire-pulse &
+pipewire-media-session &
 
 # Wallpapers
 xwallpaper --zoom "$HOME/.local/share/bg"
-
-# Compositor
-picom --experimental-backends & 
 
 # Start notifications manager
 dunst &
 notify-send -a "System." "Hi !" -i "~/.config/dunst/icons/welcome.svg"
 
-# Start redshift
+# Warm display.
 redshift &
 
-# Load mpd playlist
-mpc load "Music"
-mpc play
-mpc pause
-
-# Key bindings.
+# Hotkeys daemon
 sxhkd &
 
-# Hide mouse cursor.
-unclutter --timeout 3 &
+# Sustom screen lock.
+xss-lock slock &
 
 # Screenshots.
 flameshot &
 
+# Compositing
+picom --experimental-backends &
+
+# Load mpd playlist
+mpd
+mpc load "Music"
+mpc play
+mpc pause
+
+# Sync files.
+syncthing --no-browser &
+
+# Local search.
+/usr/bin/uwsgi --ini /etc/uwsgi/searxng.ini &
+
+# Dwm bar
+[ $WM = "dwm" ] && dwmblocks &
+
 while true; do
    [ $WM = "qtile" ] && qtile start
-   [ $WM = "dwm" ] && dwm >> ~/.cache/dwm.log 2>&1
+   [ $WM = "dwm" ] && dwm 
+   # [ $WM = "dwm" ] && dwm >> ~/.cache/dwm.log 2>&1
 done

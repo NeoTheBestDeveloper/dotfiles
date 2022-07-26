@@ -75,6 +75,7 @@ enum {
     SchemeBlock3,
     SchemeBlock4,
     SchemeBlock5,
+    SchemeBlock6,
 };
 enum {
     NetSupported,
@@ -1590,8 +1591,8 @@ void setgaps(const Arg *arg) {
     arrange(selmon);
 }
 
-Layout *last_layout;
 void togglefullscr(const Arg *arg) {
+    Layout *last_layout;
     if (selmon->showbar) {
         for (last_layout = (Layout *)layouts;
              last_layout != selmon->lt[selmon->sellt]; last_layout++)

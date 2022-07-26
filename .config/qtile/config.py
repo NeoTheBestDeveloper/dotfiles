@@ -3,7 +3,7 @@ from subprocess import run
 
 from libqtile import bar, hook, qtile
 from libqtile.widget import GroupBox, Clock, CheckUpdates, TextBox, \
-                            Volume,  Spacer, Mpd2, WindowName, GenPollText
+                            Volume,  Spacer, Mpd2, WindowName, GenPollText, Backlight
 from libqtile.layout import Floating, MonadTall
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.command import lazy
@@ -68,6 +68,19 @@ def get_updates_list() -> str:
 def get_radio_state() -> str:
     return run(['radio', 'state'], capture_output=True,
                text=True).stdout.replace('\n', '')
+
+
+def get_battery_state() -> str:
+    battery_value = int(popen('acpi -b ').read().split()[3][:-2])
+    if battery_value <= 25:
+        battery_icon = ''
+    elif 25 < battery_value <= 50:
+        battery_icon = ''
+    elif 50 < battery_value <= 75:
+        battery_icon = ''
+    else:
+        battery_icon = ''
+    return f'{battery_icon} {battery_value}%'
 
 
 desktops = {
@@ -238,12 +251,27 @@ def init_widgets_list() -> list:
             foreground=colors['nord10'],
         ),
         Spacer(15),
+        Backlight(
+            backlight_name='amdgpu_bl0',
+            change_command='xbacklight {0}',
+            step=5,
+            fmt=' {}',
+            update_interval=0.2,
+            foreground=colors['nord7'],
+        ),
+        Spacer(15),
         Volume(fmt='  {}',
                foreground=colors['nord15'],
                step=5,
                mouse_callbacks={
                    'Button3': lazy.spawn(f'{terminal} -e pulsemixer')
                }),
+        Spacer(15),
+        GenPollText(
+            func=get_battery_state,
+            update_interval=60,
+            foreground=colors['nord14'],
+        ),
         Spacer(15),
     ]
 

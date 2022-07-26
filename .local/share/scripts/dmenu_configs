@@ -17,6 +17,7 @@ options = {
     'nvim': '~/.config/nvim/init.lua',
     'nsxiv': '~/.config/nsxiv/exec/key-handler',
     'neofetch': '~/.config/neofetch/config.conf',
+    'ncmpcpp': '~/.config/ncmpcpp/config',
     'picom': '~/.config/picom/picom.conf',
     'profile': '~/.config/shell/profile',
     'qtile': '~/.config/qtile/config.py',

@@ -1,0 +1,41 @@
+#!/usr/bin/python
+
+from os import popen
+from subprocess import run
+
+
+def get_current_playlist(playlists: list[str]) -> str:
+    """Calculate hash of songs list for each playlist and
+    for current songs. It's need, beacause mpd don't memorize current
+    playlist."""
+    playlists_hash = [
+        hash(popen(f'mpc playlist "{playlist}"').read())
+        for playlist in playlists
+    ]
+    current_playlist_hash = hash(popen('mpc playlist').read())
+
+    for playlist, hash_ in zip(playlists, playlists_hash):
+        if hash_ == current_playlist_hash:
+            return playlist
+    return 'Music'
+
+
+def set_playlist(playlist: str) -> None:
+    run(['mpc', 'clear'])
+    run(['mpc', 'load', playlist])
+    run(['mpc', 'play'])
+
+
+def change_playlist() -> None:
+    """Start play next playlist. Playlist order like in loop."""
+    playlists = popen('mpc lsplaylists').read().split('\n')[:-1]
+    current_playlist = get_current_playlist(playlists)
+    current_playlist_index = playlists.index(current_playlist)
+
+    if current_playlist_index == len(playlists) - 1:
+        set_playlist(playlists[0])
+    else:
+        set_playlist(playlists[current_playlist_index + 1])
+
+if __name__ == "__main__":
+    change_playlist()

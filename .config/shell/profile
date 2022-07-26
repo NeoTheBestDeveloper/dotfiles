@@ -1,6 +1,7 @@
 #!/bin/zsh
+setterm -blength 0
 # Expand path.
-export PATH=$PATH:~/.local/share/scripts
+export PATH=$PATH:~/.local/share/scripts:~/.local/bin
 
 
 # Default programms.

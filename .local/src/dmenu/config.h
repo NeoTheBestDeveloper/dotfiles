@@ -3,7 +3,7 @@ static int centered = 0;                    /* -c option; centers dmenu on scree
 static int min_width = 500;                    /* minimum width when centered */
 
 static const char *fonts[] = {
-    "Fira Code Nerd Font Mono:pixelsize=25:antialias=true:autohint=true:style=Retina",
+    "Fira Code Nerd Font Mono:size=12:antialias=true:autohint=true:style=Retina",
 	"JoyPixels:pixelsize=20:antialias=true:autohint=true",
 };
 

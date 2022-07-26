@@ -1,0 +1,29 @@
+#!/usr/bin/python
+from shutil import move
+from sys import argv, stderr
+from os import W_OK, access, getenv, makedirs
+from pathlib import Path
+from typing import NoReturn
+
+
+def print_error(msg: str, exit_status: int = -1) -> NoReturn:
+    print(msg, file=stderr)
+    exit(exit_status)
+
+
+TRASH_DIR = Path(getenv('TRASH_DIR', '~/.Trash')).expanduser()
+
+if not TRASH_DIR.exists():
+    makedirs(TRASH_DIR, exist_ok=True)
+elif TRASH_DIR.is_file():
+    print_error(f"Error: {TRASH_DIR} is file.")
+
+files = (Path(file) for file in argv[1:])
+
+for file in files:
+    if not file.exists():
+        print_error(f'Error: file {file} does not exists')
+    elif not access(file, W_OK):
+        print_error(f'Error: have not permission for {file}')
+    else:
+        move(file, TRASH_DIR / file.parts[-1])
