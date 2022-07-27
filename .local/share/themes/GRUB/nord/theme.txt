@@ -12,9 +12,9 @@ terminal-border: "0"
 
 
 + boot_menu {
-	left = 40%-250
+	left = 30%-250
 	top = 50%-100
-	width = 900
+	width = 1500
 	height = 600
 	selected_item_color = "#8FBCBB"
 	item_color = "#E5E9F0"
