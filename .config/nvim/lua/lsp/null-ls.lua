@@ -14,6 +14,7 @@ null_ls.setup({
         formatting.clang_format.with({ extra_args = { "--style={IndentWidth: 4}" } }),
         diagnostics.flake8,
         diagnostics.mypy,
+        diagnostics.eslint_d,
         diagnostics.cppcheck,
         code_actions.refactoring,
         on_attach = function(client, bufnr)
@@ -21,7 +22,7 @@ null_ls.setup({
                 local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
                 vim.api.nvim_create_autocmd(
                     "BufWritePre",
-                    { buffer = bufnr, callback = vim.lsp.buf.formatting_sync, group = group }
+                    { buffer = bufnr, callback = vim.lsp.buf.format, group = group }
                 )
             end
         end,

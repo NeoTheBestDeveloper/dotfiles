@@ -43,7 +43,7 @@ def set_radio_pid(radio_pid: int) -> None:
 
 
 def play_radio(radio_id: int) -> None:
-    system(f'dunstify -a "Start playing" "{urls[radio_id][1]}" -i {urls[radio_id][2]}')
+    # system(f'dunstify -a "Start playing" "{urls[radio_id][1]}" -i {urls[radio_id][2]}')
     set_radio_pid(getpid())
     try:
         run(['mpv', '--no-video', urls[radio_id][0]])
@@ -82,11 +82,11 @@ def main() -> None:
         if get_radio_pid() == -1:
             play_radio(current_radio_id)
         else:
-            system(f'dunstify -a "Stop playling" "{urls[current_radio_id][1]}" -i {urls[current_radio_id][2]}')
+            # system(f'dunstify -a "Stop playling" "{urls[current_radio_id][1]}" -i {urls[current_radio_id][2]}')
             stop_radio()
 
     elif argv[1] == 'stop':
-        system(f'dunstify -a "Stop playling" "{urls[current_radio_id][1]}" -i {urls[current_radio_id][2]}')
+        # system(f'dunstify -a "Stop playling" "{urls[current_radio_id][1]}" -i {urls[current_radio_id][2]}')
         stop_radio()
 
     elif argv[1] == 'next':

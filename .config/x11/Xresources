@@ -23,7 +23,7 @@ Xft.dpi: 161
 #define c15 #B48EAD
 
 ! St settings.
-*.alpha: 0.9
+*.alpha: 1
 *.background:   #222730
 *.foreground:   c04
 *.cursorColor:  c09

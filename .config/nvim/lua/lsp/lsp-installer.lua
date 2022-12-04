@@ -1,7 +1,8 @@
 local lsp_installer = require("nvim-lsp-installer")
 local lspconfig = require("lspconfig")
 
-local servers = { "pyright", "sumneko_lua", 'clangd', 'html', 'emmet_ls', 'jsonls', 'cssls', 'grammarly', 'tailwindcss', 'yamlls', 'asm_lsp' }
+local servers = { "pyright", "sumneko_lua", 'clangd', 'html', 'emmet_ls', 'jsonls', 'cssls', 'grammarly', 'tailwindcss',
+    'yamlls', 'asm_lsp', 'rust_analyzer', 'tailwindcss', 'tsserver', 'flow' }
 
 lsp_installer.setup {
     ensure_installed = servers

@@ -1,4 +1,4 @@
-WM="dwm"
+WM="qtile"
 
 # Set keyboard layout
 setxkbmap -layout us,ru -option grp:alt_shift_toggle
@@ -16,7 +16,7 @@ xrdb -load ~/.config/x11/Xresources
 xwallpaper --zoom "$HOME/.local/share/bg" &
 
 # Volume staff.
-start_pipewire &
+# start_pipewire &
 
 # Compositor
 picom --experimental-backends & 
@@ -48,6 +48,9 @@ xss-lock slock &
 
 # Search engine.
 /usr/bin/uwsgi --ini /etc/uwsgi/searxng.ini &
+
+# Bar 
+# polybar &
 
 while true; do
    [ $WM = "qtile" ] && qtile start

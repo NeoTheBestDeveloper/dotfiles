@@ -50,7 +50,6 @@ return require("packer").startup(function()
         run = ":TSUpdate",
     }) -- Treesitter
     use("p00f/nvim-ts-rainbow") -- Rainbow brackets with treesitter.
-    use('junegunn/goyo.vim') -- Zen mode
     use({ 'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons' } }) -- Startup window.
     use('folke/todo-comments.nvim') -- Comments highlight.
     use('karb94/neoscroll.nvim') -- Smooth scroll.

@@ -3,7 +3,7 @@ from subprocess import run
 
 from libqtile import bar, hook, qtile
 from libqtile.widget import GroupBox, Clock, CheckUpdates, TextBox, \
-                            Volume,  Spacer, Mpd2, WindowName, GenPollText, Backlight
+                            Spacer, Mpd2, WindowName, GenPollText, Backlight
 from libqtile.layout import Floating, MonadTall
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.command import lazy
@@ -47,8 +47,8 @@ desktops = {
     '': [Match(wm_class=['Chromium', 'Navigator'])],
     'ﴬ': [Match(wm_class=['obsidian'])],
     '': [Match(wm_class=['TelegramDesktop'])],
-    'ﱘ': [Match(wm_class=['discord'])],
-    '': [Match(wm_class=['virt-manager'])],
+    'ﱘ': [Match()],
+    '': [Match(wm_class=['virt-manager', 'discord'])],
 }
 groups = [Group(d, matches=desktops.get(d)) for d in desktops]
 
@@ -135,7 +135,7 @@ def init_widgets_list() -> list:
             urgent_alert_method='block',
             urgent_border=colors['nord11'],
         ),
-        WindowName(max_chars=150),
+        WindowName(max_chars=50),
         TextBox(text='玲',
                 width=25,
                 font='Fira Code Nerd Font Mono',
@@ -147,7 +147,8 @@ def init_widgets_list() -> list:
                  'stop': '■'
              },
              padding=10,
-             mouse_callbacks={'Button2': toggle_playlist}),
+             mouse_callbacks={'Button2': toggle_playlist},
+             host='10.8.0.28'),
         TextBox(text='怜',
                 width=25,
                 font='Fira Code Nerd Font Mono',
@@ -189,19 +190,19 @@ def init_widgets_list() -> list:
             step=5,
             fmt=' {}',
             update_interval=0.2,
-            foreground=colors['nord7'],
+            foreground=colors['nord13'],
         ),
         Spacer(15),
         GenPollText(
             func=get_volume_status,
             update_interval=0.2,
-            foreground=colors['nord14'],
+            foreground=colors['nord15'],
         ),
         Spacer(15),
         GenPollText(
             func=get_battery_status,
             update_interval=60,
-            foreground=colors['nord14'],
+            foreground=colors['nord10'],
         ),
         Spacer(15),
     ]
@@ -213,7 +214,7 @@ def init_screens():
         Screen(top=bar.Bar(
             widgets=init_widgets_list(),
             size=50,
-            margin=[15, 25, 15, 15],
+            margin=[15, 25, 0, 15],
             background=colors['nord0'],
         ))
     ]

@@ -2,4 +2,4 @@
 
 pipewire &
 pipewire-pulse &
-pipewire-media-session &
+wireplumber 

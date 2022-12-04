@@ -7,22 +7,22 @@ XF86AudioMute
 
 # Music control.
 XF86Audio{Prev,Next}
-	radio stop;mpc -q {prev,next};  kill -RTMIN+15 dwmblocks;  notify-send -a 'Start playing' "$(mpc current)"
+	radio stop;mpc -q {prev,next};  kill -RTMIN+15 dwmblocks
 
 XF86AudioPlay
     radio stop;mpc toggle ;pkill -RTMIN+15 dwmblocks
 
 control + XF86AudioPlay
-    radio stop;toggle_playlist;pkill -RTMIN+15 dwmblocks;  notify-send -a 'Start playing' "$(mpc current)"
+    radio stop;toggle_playlist;pkill -RTMIN+15 dwmblocks
 
 shift + XF86Audio{RaiseVolume,LowerVolume}
-	radio stop;mpc -q {next,prev};pkill -RTMIN+15 dwmblocks; notify-send -a 'Start playing' "$(mpc current)"
+	radio stop;mpc -q {next,prev};pkill -RTMIN+15 dwmblocks
 
 shift + XF86AudioMute
     radio stop;mpc toggle;pkill -RTMIN+15 dwmblocks
 
 control + shift + XF86AudioMute
-    radio stop;toggle_playlist; pkill -RTMIN+15 dwmblocks;  notify-send -a 'Start playing' "$(mpc current)"
+    radio stop;toggle_playlist; pkill -RTMIN+15 dwmblocks
 
 # Radio control.
 shift + XF86Audio{Prev,Next}

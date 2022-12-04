@@ -22,7 +22,7 @@ static char block6fg[] = "#FFFFFF";
 static unsigned int borderpx = 0; /* border pixel of windows */
 static Gap default_gap = {.isgap = 1, .realgap = 10, .gappx = 20};
 static unsigned int snap = 32; /* snap pixel */
-static int showbar = 1;        /* 0 means no bar */
+static int showbar = 0;        /* 0 means no bar */
 static int topbar = 1;         /* 0 means bottom bar */
 static int user_bh = 36; /* 0 means that dwm will calculate bar height, >= 1
                             means dwm will user_bh as bar height */

@@ -4,8 +4,9 @@ export PATH=$PATH:~/.local/share/scripts
 
 # Default programms.
 export EDITOR="nvim"
-export TERMINAL="st"
-export BROWSER="qutebrowser"
+export TERMINAL="kitty"
+export BROWSER="librewolf"
+export MPD_HOST="10.8.0.28"
 
 # Clean up ~/
 export XDG_CONFIG_HOME="$HOME/.config"
