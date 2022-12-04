@@ -1,4 +1,4 @@
-#files: 792	version: 5.9
+#files: 787	version: 5.9
 
 _comps=(
 '-' '_precommand'
@@ -25,7 +25,6 @@ _comps=(
 'add-zle-hook-widget' '_add-zle-hook-widget'
 'add-zsh-hook' '_add-zsh-hook'
 'admin' '_sccs'
-'alacritty' '_alacritty'
 'ali' '_mh'
 'alias' '_alias'
 'amaya' '_webbrowser'
@@ -123,6 +122,7 @@ _comps=(
 'builtin' '_builtin'
 'bunzip2' '_bzip2'
 'burst' '_mh'
+'bwrap' '_bwrap'
 'bzcat' '_bzip2'
 'bzegrep' '_grep'
 'bzfgrep' '_grep'
@@ -260,8 +260,6 @@ _comps=(
 'dmesg' '_dmesg'
 'dmidecode' '_dmidecode'
 'doas' '_doas'
-'docker' '_docker'
-'dockerd' '_docker'
 'domainname' '_yp'
 'dos2unix' '_dos2unix'
 'drill' '_drill'
@@ -696,7 +694,6 @@ _comps=(
 'ls' '_ls'
 'lsattr' '_lsattr'
 'lsblk' '_lsblk'
-'lsd' '_lsd'
 'lsdiff' '_patchutils'
 'lsinitcpio' '_mkinitcpio'
 'lsmod' '_modutils'
@@ -956,8 +953,6 @@ _comps=(
 'podtoc' '_perl_modules'
 'poff' '_pon'
 'policytool' '_java'
-'polybar' '_polybar'
-'polybar-msg' '_polybar_msg'
 'pon' '_pon'
 'popd' '_directory_stack'
 'postconf' '_postfix'
@@ -1465,7 +1460,6 @@ _comps=(
 'yafc' '_yafc'
 'yash' '_sh'
 'yay' '_yay'
-'youtube-dl' '_youtube-dl'
 'ypbind' '_yp'
 'ypcat' '_yp'
 'ypmatch' '_yp'
@@ -1641,11 +1635,10 @@ bindkey '^[,' _history-complete-newer
 bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
-autoload -Uz _alacritty _bat _bluetoothctl _cargo _curl \
-            _docker _exa _fd _kitty _libinput \
-            _loginctl _lsd _mkinitcpio _mpv _pacman \
-            _pass _polybar _polybar_msg _pulseaudio _rg \
-            _starship _xss-lock _xwallpaper _yay _youtube-dl \
+autoload -Uz _bat _bluetoothctl _bwrap _cargo _curl \
+            _exa _fd _kitty _libinput _loginctl \
+            _mkinitcpio _mpv _pacman _pass _pulseaudio \
+            _rg _starship _xss-lock _xwallpaper _yay \
             _yt-dlp _zathura _zoxide _cdr _all_labels \
             _all_matches _alternative _approximate _arg_compile _arguments \
             _bash_completions _cache_invalid _call_function _combination _complete \
