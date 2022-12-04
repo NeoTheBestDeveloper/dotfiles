@@ -1,6 +1,8 @@
-if [ $HOST = "ArtixLaptop" ]; then 
+if [ "$HOST" == "ArtixLaptop" ]; then 
+    wall_name="laptop_bg"
     MPD_HOST=10.8.0.28 
 else 
+    wall_name="pc_bg"
     MPD_HOST=10.8.0.27
 fi
 
@@ -19,7 +21,7 @@ xrdb -load ~/.config/x11/Xresources
 [ $WM = "dwm" ] && dwmblocks &
 
 # Wallpapers
-xwallpaper --zoom "$HOME/.local/share/bg" &
+xwallpaper --zoom "$HOME/.local/share/$wall_name" &
 
 # Volume staff.
 # start_pipewire &
