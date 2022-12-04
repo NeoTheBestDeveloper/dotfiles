@@ -168,7 +168,7 @@ def init_widgets_list() -> list:
              },
              padding=10,
              mouse_callbacks={'Button2': toggle_playlist},
-             host='10.8.0.28'),
+             host='10.8.0.28' if is_laptop() else '10.8.0.27'),
         TextBox(text='怜',
                 width=25,
                 font='Fira Code Nerd Font Mono',
