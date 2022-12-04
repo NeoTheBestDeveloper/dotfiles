@@ -1,5 +1,6 @@
 from os import environ, popen, system
 from subprocess import run
+from platform import node
 
 from libqtile import bar, hook, qtile
 from libqtile.widget import GroupBox, Clock, CheckUpdates, TextBox, \
@@ -38,6 +39,10 @@ def get_volume_status() -> str:
 
 def toggle_playlist() -> None:
     system('toggle_playlist')
+
+
+def is_laptop() -> bool:
+    return 'Laptop' in node()
 
 
 desktops = {
@@ -126,7 +131,22 @@ extension_defaults = widget_defaults.copy()
 
 def init_widgets_list() -> list:
     """Create a widget list."""
-    return [
+    backlight_widget = Backlight(
+        backlight_name='amdgpu_bl0',
+        change_command='brightnessctl set {0}%',
+        step=5,
+        fmt=' {}',
+        update_interval=0.2,
+        foreground=colors['nord13'],
+    )
+
+    battery_widget = GenPollText(
+        func=get_battery_status,
+        update_interval=60,
+        foreground=colors['nord10'],
+    )
+
+    widgets = [
         Spacer(15),
         GroupBox(
             highlight_method='block',
@@ -184,28 +204,24 @@ def init_widgets_list() -> list:
             foreground=colors['nord10'],
         ),
         Spacer(15),
-        Backlight(
-            backlight_name='amdgpu_bl0',
-            change_command='brightnessctl set {0}%',
-            step=5,
-            fmt=' {}',
-            update_interval=0.2,
-            foreground=colors['nord13'],
-        ),
-        Spacer(15),
         GenPollText(
             func=get_volume_status,
             update_interval=0.2,
             foreground=colors['nord15'],
         ),
         Spacer(15),
-        GenPollText(
-            func=get_battery_status,
-            update_interval=60,
-            foreground=colors['nord10'],
-        ),
-        Spacer(15),
     ]
+
+    if is_laptop():
+        for w in widgets:
+            if isinstance(w, Clock):
+                i = widgets.index(w)
+                widgets.insert(i + 1, Spacer(15))
+                widgets.insert(i + 2, backlight_widget)
+                widgets.insert(i + 4, Spacer(15))
+                widgets.insert(i + 5, battery_widget)
+
+    return widgets
 
 
 def init_screens():
