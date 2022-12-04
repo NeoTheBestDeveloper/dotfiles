@@ -1,7 +1,7 @@
 if [ $HOST = "ArtixLaptop" ]; then 
-    MPD_HOST = 10.8.0.28 
+    MPD_HOST=10.8.0.28 
 else 
-    MPD_HOST = 10.8.0.27
+    MPD_HOST=10.8.0.27
 fi
 
 WM="qtile"
