@@ -32,7 +32,8 @@ options = {
     'qutebrowser': '~/.config/qutebrowser/config.py',
     'tmux': '~/.config/tmux/tmux.conf',
     'xinitrc': '~/.config/x11/xinitrc',
-    'xresources': '~/.config/x11/Xresources',
+    'xresources_pc': '~/.config/x11/xresources_pc',
+    'xresources_laptop': '~/.config/x11/xresources_laptop',
     'zathura': '~/.config/zathura/zathurarc',
     'zsh': '~/.config/zsh/.zshrc',
 }

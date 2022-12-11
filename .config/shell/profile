@@ -10,9 +10,11 @@ export BROWSER="librewolf"
 
 # Set wallpaper name.
 if [ $(echo $HOST | grep -i Laptop) ]; then 
-    wall_name="laptop_bg"
+    export wall_name="laptop_bg"
+    export xresources_name="xresources_laptop"
 else
-    wall_name="pc_bg"
+    export wall_name="pc_bg"
+    export xresources_name="xresources_pc"
 fi
 
 # Clean up ~/

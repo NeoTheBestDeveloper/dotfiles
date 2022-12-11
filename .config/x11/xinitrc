@@ -4,7 +4,7 @@ WM="qtile"
 setxkbmap -layout us,ru -option grp:alt_shift_toggle
 
 # load Xresources
-xrdb -load ~/.config/x11/Xresources
+xrdb -load "$HOME/.config/x11/$xresources_name"
 
 # Start polkit manager
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
@@ -16,7 +16,7 @@ xrdb -load ~/.config/x11/Xresources
 xwallpaper --zoom "$HOME/.local/share/$wall_name" &
 
 # Compositor
-picom --experimental-backends & 
+picom & 
 
 # Start notifications manager
 dunst &
