@@ -1,11 +1,3 @@
-if [ "$HOST" == "ArtixLaptop" ]; then 
-    wall_name="laptop_bg"
-    MPD_HOST=10.8.0.28 
-else 
-    wall_name="pc_bg"
-    MPD_HOST=10.8.0.27
-fi
-
 WM="qtile"
 
 # Set keyboard layout
@@ -22,9 +14,6 @@ xrdb -load ~/.config/x11/Xresources
 
 # Wallpapers
 xwallpaper --zoom "$HOME/.local/share/$wall_name" &
-
-# Volume staff.
-# start_pipewire &
 
 # Compositor
 picom --experimental-backends & 
@@ -53,9 +42,6 @@ syncthing --no-browser &
 
 # Custom lock.
 xss-lock slock &
-
-# Search engine.
-/usr/bin/uwsgi --ini /etc/uwsgi/searxng.ini &
 
 while true; do
    [ $WM = "qtile" ] && qtile start

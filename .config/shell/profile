@@ -1,4 +1,5 @@
 #!/bin/zsh
+
 # Expand path.
 export PATH=$PATH:~/.local/share/scripts
 
@@ -6,7 +7,13 @@ export PATH=$PATH:~/.local/share/scripts
 export EDITOR="nvim"
 export TERMINAL="kitty"
 export BROWSER="librewolf"
-export MPD_HOST="10.8.0.28"
+
+# Set wallpaper name.
+if [ $(echo $HOST | grep -i Laptop) ]; then 
+    wall_name="laptop_bg"
+else
+    wall_name="pc_bg"
+fi
 
 # Clean up ~/
 export XDG_CONFIG_HOME="$HOME/.config"

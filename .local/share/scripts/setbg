@@ -1,12 +1,6 @@
 #!/bin/sh
 
 
-if [ "$HOST" == "ArtixLaptop" ]; then 
-    wall_name="laptop_bg"
-else 
-    wall_name="pc_bg"
-fi
-
 wall_dir="$HOME/.local/share/wallpapers"
 bg_loc="${XDG_DATA_HOME:-$HOME/.local/share/}/$wall_name"
 

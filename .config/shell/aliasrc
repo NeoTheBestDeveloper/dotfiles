@@ -47,5 +47,5 @@ alias del="trash-cli"
 alias post_json=" curl -X POST -H 'Content-Type: application/json' -d "
 alias hx='helix'
 alias vpn_d='sudo rc-service wireguard stop'
-alias vpn_s='sudo rc-service wireguard start'
+alias vpn_s='sudo rc-service wireguard start; sudo ip li set mtu 1400 dev eth0'
 alias vpn_r='sudo rc-service wireguard restart'

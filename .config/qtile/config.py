@@ -160,15 +160,16 @@ def init_widgets_list() -> list:
                 width=25,
                 font='Fira Code Nerd Font Mono',
                 mouse_callbacks={'Button1': lazy.spawn('mpc prev')}),
-        Mpd2(status_format='{play_status} {title}',
-             play_states={
-                 'pause': '▶',
-                 'play': ' ',
-                 'stop': '■'
-             },
-             padding=10,
-             mouse_callbacks={'Button2': toggle_playlist},
-             host='10.8.0.28' if is_laptop() else '10.8.0.27'),
+        Mpd2(
+            status_format='{play_status} {title}',
+            play_states={
+                'pause': '▶',
+                'play': ' ',
+                'stop': '■'
+            },
+            padding=10,
+            mouse_callbacks={'Button2': toggle_playlist},
+        ),
         TextBox(text='怜',
                 width=25,
                 font='Fira Code Nerd Font Mono',
