@@ -42,7 +42,7 @@ alias uphone="fusermount -u /mnt/Mobile"
 alias nw="python -m neowords"
 alias nf='neofetch'
 alias venv="python -m venv venv; source venv/bin/activate"
-alias config="/usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME"
+alias dotfiles="git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME"
 alias del="trash-cli"
 alias post_json=" curl -X POST -H 'Content-Type: application/json' -d "
 alias hx='helix'
