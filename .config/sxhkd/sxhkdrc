@@ -42,8 +42,8 @@ XF86MonBrightness{Up,Down}
     brightnessctl s {+5%,5%-}; pkill -RTMIN+12 dwmblocks
 
 # Programms.
-super + shift + {t, b, z, p, l, c, r, n}
-    {telegram-desktop, $BROWSER, zathura, passmenu, librewolf, slock loginctl suspend, $TERMINAL -e ranger, obsidian}
+super + shift + {t, b, z, p, l, c, r, n, y}
+    {telegram-desktop, $BROWSER, zathura, passmenu, librewolf, slock loginctl suspend, $TERMINAL -e ranger, obsidian, freetube}
 
 
 # Scripts.

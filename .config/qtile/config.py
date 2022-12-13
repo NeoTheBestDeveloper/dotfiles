@@ -219,8 +219,8 @@ def init_widgets_list() -> list:
                 i = widgets.index(w)
                 widgets.insert(i + 1, Spacer(15))
                 widgets.insert(i + 2, backlight_widget)
-                widgets.insert(i + 4, Spacer(15))
-                widgets.insert(i + 5, battery_widget)
+                widgets.insert(i + 4, battery_widget)
+                widgets.insert(i + 5, Spacer(15))
 
     return widgets
 
