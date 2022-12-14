@@ -25,10 +25,10 @@ _comp_options+=(globdots)
 
 ### Prompt ###
 autoload -U promptinit && promptinit
-eval "$(starship init zsh)"
 
 ### Colors ###
 autoload -U colors && colors
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 ### Key-bindings ###
 bindkey -s '^s' 'ncdu --color=dark / ^M'
@@ -77,7 +77,6 @@ source $ZDOTDIR/plugins/zsh-command-not-found/command-not-found.plugin.zsh
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $ZDOTDIR/plugins/completion.zsh
 source $ZDOTDIR/plugins/key-bindings.zsh
-
 
 ### Some other commands. ###
 eval "$(zoxide init zsh)"

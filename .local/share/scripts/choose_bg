@@ -1,0 +1,3 @@
+#!/bin/sh
+
+nsxiv -t ~/.local/share/wallpapers

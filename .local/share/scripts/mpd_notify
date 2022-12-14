@@ -1,0 +1,22 @@
+#!/bin/sh
+
+printf "$$" > ~/.cache/mpd_notify
+
+prev_song="$(mpc -f "%title%" current)"
+
+show_current_mpd_song() {
+        current_song="$(mpc -f "%title%" current)"
+        if [ "$prev_song" != "$current_song" ]; then
+           prev_song=$current_song;
+           dunst_current_song
+        fi
+}
+
+
+trap "show_current_mpd_song"	"RTMIN"
+while [ 1 ]; do
+    sleep 0.5 &
+    wait && {
+        show_current_mpd_song
+    }
+done

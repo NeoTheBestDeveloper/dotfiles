@@ -1,45 +1,45 @@
 # Volume.
 XF86Audio{RaiseVolume,LowerVolume}
-    pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%; pkill -RTMIN+14 dwmblocks
+    pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%; kill -34 "$(cat $HOME/.cache/pidofbar)"
 
 XF86AudioMute
-    pactl set-sink-mute @DEFAULT_SINK@ toggle; pkill -RTMIN+14 dwmblocks
+    pactl set-sink-mute @DEFAULT_SINK@ toggle; kill -34 "$(cat $HOME/.cache/pidofbar)"
 
 # Music control.
 XF86Audio{Prev,Next}
-	radio stop;mpc -q {prev,next};  kill -RTMIN+15 dwmblocks
+	radio stop;mpc -q {prev,next};  kill -34 "$(cat $HOME/.cache/mpd_notify)"; 
 
 XF86AudioPlay
-    radio stop;mpc toggle ;pkill -RTMIN+15 dwmblocks
+    radio stop;mpc toggle ;kill -34 "$(cat $HOME/.cache/mpd_notify)"; 
 
 control + XF86AudioPlay
-    radio stop;toggle_playlist;pkill -RTMIN+15 dwmblocks
+    radio stop;toggle_playlist;kill -34 "$(cat $HOME/.cache/mpd_notify)"; 
 
 shift + XF86Audio{RaiseVolume,LowerVolume}
-	radio stop;mpc -q {next,prev};pkill -RTMIN+15 dwmblocks
+	radio stop;mpc -q {next,prev};kill -34 "$(cat $HOME/.cache/mpd_notify)"; 
 
 shift + XF86AudioMute
-    radio stop;mpc toggle;pkill -RTMIN+15 dwmblocks
+    radio stop;mpc toggle;kill -34 "$(cat $HOME/.cache/mpd_notify)";
 
 control + shift + XF86AudioMute
-    radio stop;toggle_playlist; pkill -RTMIN+15 dwmblocks
+    radio stop;toggle_playlist; kill -34 "$(cat $HOME/.cache/mpd_notify)"; 
 
 # Radio control.
 shift + XF86Audio{Prev,Next}
-	radio {prev,next}; pkill -RTMIN+16 dwmblocks
+	radio {prev,next}; mpc stop; kill -34 "$(cat $HOME/.cache/pidofbar)"
 
 shift + XF86AudioPlay
-    radio toggle; pkill -RTMIN+16 dwmblocks
+    radio toggle; mpc stop;kill -34 "$(cat $HOME/.cache/pidofbar)"
 
 super + XF86Audio{RaiseVolume,LowerVolume}
-	radio {next,prev}; pkill -RTMIN+16 dwmblocks
+	radio {next,prev}; mpc stop;kill -34 "$(cat $HOME/.cache/pidofbar)"
 
 super + XF86AudioMute
-    radio toggle; pkill -RTMIN+16 dwmblocks
+    radio toggle; mpc stop;kill -34 "$(cat $HOME/.cache/pidofbar)"
 
 # Brightness control.
 XF86MonBrightness{Up,Down}
-    brightnessctl s {+5%,5%-}; pkill -RTMIN+12 dwmblocks
+    brightnessctl s {+5%,5%-}; kill -34 "$(cat $HOME/.cache/pidofbar)"
 
 # Programms.
 super + shift + {t, b, z, p, l, c, r, n, y}
@@ -47,8 +47,8 @@ super + shift + {t, b, z, p, l, c, r, n, y}
 
 
 # Scripts.
-super + shift + {e, x, s, u, o, h}
-    {dmenu_configs, dmenu_powermenu, dmenu_search, file_upload, open -b, st -e htop}
+super + shift + {e, x, s, u, o, h, w, m}
+    {dmenu_configs, dmenu_powermenu, dmenu_search, file_upload, open -b, $TERMINAL -e htop, choose_bg, $TERMINAL -e ncmpcpp}
 
 super + Tab
     flameshot gui -c -p ~/Media/Photo/Screenshots

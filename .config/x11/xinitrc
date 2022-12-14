@@ -1,26 +1,29 @@
-WM="qtile"
+# qtile dwm
+export WM="dwm"
 
 # Set keyboard layout
 setxkbmap -layout us,ru -option grp:alt_shift_toggle
 
 # load Xresources
-xrdb -load "$HOME/.config/x11/$xresources_name"
+echo "Xft.dpi: $DPI" | xrdb -merge
+wal -R
+dunsx_xr &
+
+# Start notifications manager
+dunst &
+dunstify -a "System" "" 'Hi!' -i "$HOME/.local/share/themes/GRUB/nord/icons/artix.png" &
+
+# dwm bar 
+[ "$WM" = "dwm" ] && dwm_bar &
 
 # Start polkit manager
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-# Dwm bar
-[ $WM = "dwm" ] && dwmblocks &
 
 # Wallpapers
 xwallpaper --zoom "$HOME/.local/share/$wall_name" &
 
 # Compositor
 picom & 
-
-# Start notifications manager
-dunst &
-notify-send -a "System." "" "Hi !" -i "~/.config/dunst/icons/welcome.svg"
 
 # Start redshift
 redshift &

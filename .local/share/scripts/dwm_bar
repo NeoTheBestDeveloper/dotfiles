@@ -1,0 +1,53 @@
+#!/bin/env sh
+
+# INIT
+printf "$$" > ~/.cache/pidofbar
+sec=0
+
+update_memory () { 
+	memory="$(free -h | sed -n "2s/\([^ ]* *\)\{2\}\([^ ]*\).*/\2/p")"
+}
+
+update_time () { 
+	time="$(date "+[  %a %d %b ] [  %I:%M %P ]")" 
+}
+
+update_bat () { 
+    bat="$(status_battery)"
+}
+
+update_vol () { 
+	vol="$([ "$(pamixer --get-mute)" = "false" ] && printf ' ' || printf ' ')$(pamixer --get-volume)%"
+}
+
+display () { 
+	xsetroot -name " [ $bat ] [ $vol ] $time "
+}
+
+# We have to run this only once.
+update_vol
+
+
+
+# Handling receiving signal
+# RTMIN = 34 (always)
+trap	"update_vol;display"	"RTMIN"
+
+## kill -m "$(cat ~/.cache/pidofbar)"
+# where m = 34 + n
+
+while true
+do
+	sleep 1 &
+  wait && { 
+		# to update item ever n seconds with a offset of m
+		## [ $((sec % n)) -eq m ] && udpate_item
+		[ $((sec % 5 )) -eq 0 ] && update_time
+		[ $((sec % 5 )) -eq 0 ] && update_bat
+		[ $((sec % 15)) -eq 0 ] && update_memory
+
+		# how often the display updates ( 5 seconds )
+		[ $((sec % 5 )) -eq 0 ] && display
+		sec=$((sec + 1))
+	}
+done 

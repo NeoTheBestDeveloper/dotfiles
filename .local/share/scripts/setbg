@@ -11,4 +11,13 @@ else
 fi
 
 ln -sf "$(readlink -f "$wall")"  "$bg_loc"
+wal -c
+wal -s -i "$wall"
+
 xwallpaper --zoom "$bg_loc"
+xdotool key super+F5
+
+dunst_xr
+pkill dunst  
+dunst &
+disown

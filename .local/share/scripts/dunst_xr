@@ -1,0 +1,9 @@
+#!/bin/sh
+
+orig_file="$HOME/.config/dunst/dunstrc.orig"
+proccesed_file="$HOME/.config/dunst/dunstrc"
+
+foreground_expr="s/foreground.*$/foreground=\"$(xrdb -get dwm.color6)\"/g"
+background_expr="s/background.*$/background=\"$(xrdb -get dwm.color0)\"/g"
+
+sed -e "$foreground_expr" -e "$background_expr" $orig_file > $proccesed_file

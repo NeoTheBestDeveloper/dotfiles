@@ -13,7 +13,7 @@ alias free='free -h'
 alias mkdir='mkdir -p'
 alias grep='grep --color=auto'
 alias sc='cd ~/.local/share/scripts; nv $(fzf)'
-alias nsxiv='nsxiv -s f'
+alias nsxiv='devour nsxiv -s f'
 alias upd='sudo pacman -Syu'
 alias pi="packages_menu pci"
 alias yi="packages_menu yi"
@@ -37,3 +37,6 @@ alias vpn_r='sudo rc-service wireguard restart'
 alias ds="dotfiles status"
 alias dp="dotfiles push"
 alias dc="dotfiles commit -am"
+alias wl='nsxiv -t ~/.local/share/wallpapers'
+alias libreoffice='devour libreoffice'
+alias zathura='devour zathura'

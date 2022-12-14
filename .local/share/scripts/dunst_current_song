@@ -1,0 +1,5 @@
+#!/bin/sh
+
+ffmpeg -i $HOME/Media/Music/"$(mpc  -f '%file%' current)"  -an -c:v copy /tmp/cover.jpg 2> /dev/null  
+dunstify "" "$(mpc --format '%title% - %artist%' current)" -a "Playing Now" -i /tmp/cover.jpg 
+rm /tmp/cover.jpg

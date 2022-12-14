@@ -1,0 +1,11 @@
+#!/bin/sh
+
+REDMI_ARDOTS3_MAC="9C:19:C2:34:D4:37"
+
+DEFAULT=$REDMI_ARDOTS3_MAC
+CMD="bluetoothctl connect"
+
+case "$1" in
+    $DEFAULT) $CMD $DEFAULT;;
+    *) $CMD $DEFAULT;;
+esac

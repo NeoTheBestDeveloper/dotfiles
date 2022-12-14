@@ -12,6 +12,7 @@ options = {
     'dwm': '~/.local/src/dwm/config.def.h',
     'dwmblocks': '~/.local/src/dwmblocks/blocks.def.h',
     'fd ignore': '~/.config/fd/ignore',
+    'flameshot': '~/.config/flameshot/flameshot.ini',
     'mpd': '~/.config/mpd/mpd.conf',
     'mpv': '~/.config/mpv/mpv.conf',
     'nvim': '~/.config/nvim/init.lua',

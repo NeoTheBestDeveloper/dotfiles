@@ -4,3 +4,4 @@ mpd
 mpc load "Music"
 mpc play
 mpc pause
+mpd_notify
