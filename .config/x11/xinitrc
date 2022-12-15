@@ -16,9 +16,6 @@ dunstify -a "System" "" 'Hi!' -i "$HOME/.local/share/themes/GRUB/nord/icons/arti
 # dwm bar 
 [ "$WM" = "dwm" ] && dwm_bar &
 
-# Start polkit manager
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
 # Wallpapers
 xwallpaper --zoom "$HOME/.local/share/$wall_name" &
 
