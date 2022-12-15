@@ -9,3 +9,4 @@ case "$1" in
     $DEFAULT) $CMD $DEFAULT;;
     *) $CMD $DEFAULT;;
 esac
+kill -34 "$(cat $HOME/.cache/pidofbar)"

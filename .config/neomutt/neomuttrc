@@ -1,0 +1,2 @@
+set my_curr_account = `/usr/bin/ls ~/.config/neomutt/accounts | dmenu -c -l 5 -bw 5 -i -p "Select account:"`
+source ~/.config/neomutt/accounts/$my_curr_account

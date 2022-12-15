@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set my_username = neothebestlife
+
+set my_password = `pass Email/gmail.com/$my_username@gmail.com.neomutt`
+
+set imap_user = $my_username
+set imap_pass = $my_password
+set folder = "imaps://imap.gmail.com:993"
+
+set smtp_url="smtps://$my_username@gmail.com@smtp.gmail.com:465/"
+set smtp_pass="$my_password"
+set smtp_authenticators="gssapi:login"
+
+
+set spoolfile = "+INBOX"
+set trash = "+[Gmail]/Trash"
+set record="+[Gmail]/Sent Mail"
+set postponed="+[Gmail]/Drafts"
+mailboxes =INBOX =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Trash
