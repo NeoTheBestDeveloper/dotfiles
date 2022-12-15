@@ -4,6 +4,10 @@
 printf "$$" > ~/.cache/pidofbar
 sec=0
 
+is_laptop () { 
+    [ $(echo $HOST | grep -i Laptop) ] && echo 1 || echo 0
+}
+
 update_memory () { 
 	memory="$(free -h | sed -n "2s/\([^ ]* *\)\{2\}\([^ ]*\).*/\2/p")"
 }
@@ -21,7 +25,11 @@ update_vol () {
 }
 
 display () { 
-	xsetroot -name " [ $bat ] [ $vol ] $time "
+    if [ $(is_laptop) -eq 1 ]; then
+        xsetroot -name " [ $bat ] [ $vol ] $time "
+    else 
+        xsetroot -name " [ $vol ] $time "
+    fi
 }
 
 # We have to run this only once.
