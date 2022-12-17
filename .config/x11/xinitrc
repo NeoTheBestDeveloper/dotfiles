@@ -7,7 +7,7 @@ setxkbmap -layout us,ru -option grp:alt_shift_toggle
 # load Xresources
 echo "Xft.dpi: $DPI" | xrdb -merge
 wal -R
-dunsx_xr &
+dunsx_xr 
 
 # Start notifications manager
 dunst &
