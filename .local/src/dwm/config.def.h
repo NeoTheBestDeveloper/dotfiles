@@ -36,6 +36,7 @@ static const Rule rules[] = {
     {"obsidian", NULL, NULL, 1 << 3, 0, -1},
     {"Chromium", NULL, NULL, 1 << 1, 0, -1},
     {"qutebrowser", NULL, NULL, 1 << 1, 0, -1},
+    {"discord", NULL, NULL, 1 << 5, 0, -1},
 };
 
 /* layout(s) */
