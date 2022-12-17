@@ -1,6 +1,7 @@
 #!/bin/sh 
 
 mpd 
+mpc clear
 mpc load "Music"
 mpc play
 mpc pause

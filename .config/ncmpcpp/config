@@ -613,3 +613,14 @@ external_editor = nvim
 #
 #active_window_border = red
 #
+
+cyclic_scrolling = "yes"
+header_text_scrolling = "yes"
+jump_to_now_playing_song_at_start = "yes"
+lines_scrolled = "2"
+header_visibility = "yes"
+statusbar_visibility = "yes"
+titles_visibility = "yes"
+
+def_key "j"
+    scroll_down
