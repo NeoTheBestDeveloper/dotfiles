@@ -20,7 +20,7 @@ dunstify -a "System" "" 'Hi!' -i "$HOME/.local/share/themes/GRUB/nord/icons/arti
 xwallpaper --zoom "$HOME/.local/share/$wall_name" &
 
 # Compositor
-picom --experimental-backends &
+picom &
 
 # Start redshift
 redshift &
