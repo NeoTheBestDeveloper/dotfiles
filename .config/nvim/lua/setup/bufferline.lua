@@ -5,11 +5,11 @@ end
 
 bufferline.setup {
     options = {
-        numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-        close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+        numbers = "none",                    -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+        close_command = "Bdelete! %d",       -- can be a string | function, see "Mouse actions"
         right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-        left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
-        middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
+        left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
+        middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
         indicator = { icon = "▎" },
         buffer_close_icon = "",
         -- buffer_close_icon = '',
@@ -21,7 +21,7 @@ bufferline.setup {
         max_name_length = 30,
         max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
         tab_size = 21,
-        diagnostics = false, -- | "nvim_lsp" | "coc",
+        diagnostics = false,    -- | "nvim_lsp" | "coc",
         diagnostics_update_in_insert = false,
         offsets = { { filetype = "neo-tree", text = "", padding = 1 } },
         show_buffer_icons = true,
@@ -37,7 +37,7 @@ bufferline.setup {
     },
     highlights = {
         fill = {
-            fg = { attribute = "fg", highlight = "#ff0000" },
+            fg = { attribute = "fg", highlight = "Normal" },
             bg = { attribute = "bg", highlight = "TabLine" },
             bold = true,
             italic = false
@@ -52,8 +52,8 @@ bufferline.setup {
         },
 
         buffer_selected = {
-            fg = { attribute = 'fg', highlight = '#ff0000' },
-            bg = { attribute = 'bg', highlight = '#0000ff' },
+            fg = { attribute = 'fg', highlight = 'Normal' },
+            bg = { attribute = 'bg', highlight = 'Normal' },
             bold = true,
             italic = false
 
