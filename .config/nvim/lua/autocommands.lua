@@ -1,7 +1,6 @@
 -- autocmd! remove all autocommands, if entered under a group it will clear that group
 vim.cmd([[
-    autocmd BufWritePre *.py,*.lua,*.c,*.cpp,*.hs,*.html,*.css,*.js,*.rs,*.h,*.yml,*.yaml,*.jsx execute "lua vim.lsp.buf.format()"
-    autocmd BufWritePost Xresources silent !{xrdb -merge %}
+    autocmd BufWritePre *.py,*.lua,*.c,*.cpp,*.hs,*.html,*.css,*.js,*.rs,*.h,*.yml,*.yaml,*.jsx,*.hpp,*.s,*.asm execute "lua vim.lsp.buf.format()"
     autocmd FileType htmldjango silent :set filetype=html
 ]])
 

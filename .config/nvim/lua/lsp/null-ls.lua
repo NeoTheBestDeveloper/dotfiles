@@ -8,12 +8,14 @@ local code_actions = null_ls.builtins.code_actions
 null_ls.setup({
     debug = false,
     sources = {
-        formatting.yapf,
+        formatting.black,
         formatting.djlint.with({ extra_filetypes = { 'html' } }),
         diagnostics.djlint.with({ extra_filetypes = { 'html' } }),
-        formatting.clang_format.with({ extra_args = { "--style={IndentWidth: 4}" } }),
-        diagnostics.flake8,
+        formatting.clang_format,
         diagnostics.mypy,
+        formatting.isort,
+        diagnostics.ruff,
+        diagnostics.pylint,
         diagnostics.eslint_d,
         diagnostics.cppcheck,
         code_actions.refactoring,

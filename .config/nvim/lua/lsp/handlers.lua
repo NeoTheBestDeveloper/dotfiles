@@ -58,7 +58,20 @@ local function lsp_highlight_document(client)
         )
     end
 end
-
+local function lsp_format_document(client)
+  -- Check the language server capabilities
+  if client.server_capabilities.document_highlight then
+    vim.api.nvim_exec(
+      [[
+      augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+      augroup END
+      ]],
+      false
+    )
+  end
+end
 local function lsp_keymaps(bufnr)
     local opts = { noremap = true, silent = true }
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -78,7 +91,22 @@ local function lsp_keymaps(bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gC", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format(async=true)' | w! ]])
+    vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' | w! ]])
+end
+
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+local lsp_format_on_save = function(bufnr)
+  vim.api.nvim_clear_autocmds({group = augroup, buffer = bufnr})
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    group = augroup,
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.format()
+      filter = function(client)
+        return client.name == "null-ls"
+      end
+    end,
+  })
 end
 
 M.on_attach = function(client, bufnr)
@@ -90,14 +118,13 @@ M.on_attach = function(client, bufnr)
     end
     lsp_keymaps(bufnr)
     lsp_highlight_document(client)
+    --[[ lsp_format_document(client) ]]
+    --[[ lsp_format_on_save(bufnr) ]]
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-    return
-end
 
 M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 return M
