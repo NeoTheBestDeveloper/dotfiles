@@ -91,13 +91,13 @@
     # Defines color of the frame around the notification window.
     frame_color = "#4C566A"
 
-    foreground="#7AABC4"
-    background="#1b1e25"
+    foreground="#768783"
+    background="#0C1115"
 
     # Define a color for the separator.
     # possible values are:
-    #  * auto: dunst tries to find a color fitting to the background="#1b1e25"
-    #  * foreground="#7AABC4"
+    #  * auto: dunst tries to find a color fitting to the background="#0C1115"
+    #  * foreground="#768783"
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
     separator_color = "#00000000"
@@ -295,22 +295,22 @@
 # [urgency_low]
 #     # IMPORTANT: colors have to be defined in quotation marks.
 #     # Otherwise the "#" and following would be interpreted as a comment.
-#     background="#1b1e25"
-#     foreground="#7AABC4"
+#     background="#0C1115"
+#     foreground="#768783"
 #     timeout = 10
 #     # Icon for notifications with low urgency, uncomment to enable
 #     #default_icon = /path/to/icon
 #
 # [urgency_normal]
-#     background="#1b1e25"
-#     foreground="#7AABC4"
+#     background="#0C1115"
+#     foreground="#768783"
 #     timeout = 15
 #     # Icon for notifications with normal urgency, uncomment to enable
 #     #default_icon = /path/to/icon
 #
 # [urgency_critical]
-#     background="#1b1e25"
-#     foreground="#7AABC4"
+#     background="#0C1115"
+#     foreground="#768783"
 #     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     #default_icon = /path/to/icon
@@ -330,8 +330,8 @@
 #    summary
 #
 # and you can override the
-#    background="#1b1e25"
-#    foreground="#7AABC4"
+#    background="#0C1115"
+#    foreground="#768783"
 #    format
 #    frame_color
 #    fullscreen

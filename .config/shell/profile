@@ -1,21 +1,23 @@
 #!/bin/zsh
-
+export _JAVA_AWT_WM_NONREPARENTING=1
 # Expand path.
-export PATH=$PATH:~/.local/share/scripts
+export PATH=$PATH:~/.local/share/scripts:~/.local/bin
 
 # Default programms.
 export EDITOR="nvim"
-export TERMINAL="st"
+export TERMINAL="kitty"
 export BROWSER="librewolf"
+export CC="gcc"
+export CXX="g++"
 
 # Set wallpaper name.
-if [ $(echo $HOST | grep -i Laptop) ]; then 
-    export wall_name="laptop_bg"
-    export DPI="160"
-else
-    export wall_name="pc_bg"
-    export DPI="187"
-fi
+# if [ $(echo $HOST | grep -i Laptop) ]; then 
+#     export wall_name="laptop_bg"
+#     export DPI="160"
+# else
+#     export wall_name="pc_bg"
+#     export DPI="187"
+# fi
 
 # Clean up ~/
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -61,4 +63,5 @@ export LF_ICONS="tw= :st= :ow= :dt= :di= :fi= :ln= :or= 
 
 
 # Start graphical server on user's current tty if not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC" > ~/.cache/xinitrc.log
+# [ "$(tty)" = "/dev/tty1" ] && exec startx "$XINITRC"
+ [ "$(tty)" = "/dev/tty1" ] && ! exec Hyprland

@@ -43,7 +43,7 @@ XF86MonBrightness{Up,Down}
 
 # Programms.
 super + shift + {t, b, z, p, l, c, r, n, y, d}
-    {telegram-desktop, $BROWSER, zathura, passmenu, librewolf, slock loginctl suspend, $TERMINAL -e ranger, obsidian, freetube, discord}
+    {telegram-desktop, $BROWSER, zeditor, passmenu, librewolf, slock loginctl suspend, $TERMINAL -e ranger, obsidian, freetube, discord}
 
 
 # Scripts.

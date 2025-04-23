@@ -1,6 +1,9 @@
 # qtile dwm
 export WM="dwm"
 
+# start rootless docker 
+dockerd-rootless.sh  &
+
 # Set keyboard layout
 setxkbmap -layout us,ru -option grp:alt_shift_toggle
 
@@ -16,11 +19,11 @@ dunstify -a "System" "" 'Hi!' -i "$HOME/.local/share/themes/GRUB/nord/icons/arti
 # dwm bar 
 [ "$WM" = "dwm" ] && dwm_bar &
 
+# Compositor
+picom --experimental-backends &
+
 # Wallpapers
 xwallpaper --zoom "$HOME/.local/share/$wall_name" &
-
-# Compositor
-picom &
 
 # Start redshift
 redshift &
@@ -46,4 +49,5 @@ xss-lock slock &
 while true; do
    [ $WM = "qtile" ] && qtile start
    [ $WM = "dwm" ] && dwm 
+   [ $WM = "hyprland" ] && hyprland 
 done

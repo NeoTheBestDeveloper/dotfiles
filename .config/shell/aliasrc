@@ -14,7 +14,7 @@ alias mkdir='mkdir -p'
 alias grep='grep --color=auto'
 alias sc='cd ~/.local/share/scripts; nv $(fzf)'
 alias nsxiv='devour nsxiv -s f'
-alias upd='sudo pacman -Syu'
+alias upd='sudo paru -Syu'
 alias pi="packages_menu pci"
 alias yi="packages_menu yi"
 alias mp="packages_menu mp"
@@ -40,3 +40,6 @@ alias dc="dotfiles commit -am"
 alias wl='nsxiv -t ~/.local/share/wallpapers'
 alias libreoffice='devour libreoffice'
 alias zathura='devour zathura'
+alias nano=nano
+alias mine='java -jar ~/.local/bin/SKlauncher-3.1.1.jar'
+alias pycharm='~/.local/share/pycharm-professional-2024.2.3.tar/pycharm-2024.2.3/bin/pycharm'

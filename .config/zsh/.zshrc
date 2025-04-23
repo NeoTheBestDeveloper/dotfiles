@@ -16,6 +16,7 @@ _comp_options+=(globdots)
 
 
 ### Completions ###
+fpath+=$ZDOTDIR/.zfunc # poetry completions
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
@@ -78,5 +79,10 @@ source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $ZDOTDIR/plugins/completion.zsh
 source $ZDOTDIR/plugins/key-bindings.zsh
 
+# The next line updates PATH for CLI.
+if [ -f '/home/neo/yandex-cloud/path.bash.inc' ]; then source '/home/neo/yandex-cloud/path.bash.inc'; fi
+
+# The next line enables shell command completion for yc.
+if [ -f '/home/neo/yandex-cloud/completion.zsh.inc' ]; then source '/home/neo/yandex-cloud/completion.zsh.inc'; fi
 ### Some other commands. ###
 eval "$(zoxide init zsh)"

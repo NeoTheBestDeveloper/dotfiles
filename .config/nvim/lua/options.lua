@@ -1,46 +1,52 @@
--- Options. --
+-- Global options.
+local opt = vim.opt
 
--- Enable mouse. --
-vim.opt.mouse = "a"
+-- Enable mouse.
+opt.mouse = "a"
 
--- Enable numbers. --
-vim.opt.number = true
-vim.opt.relativenumber = true
+-- Enable number for rows.
+opt.number = true
+opt.relativenumber = true
 
--- Disable swapfile.
-vim.opt.swapfile = false
+-- Disable swapfile
+opt.swapfile = false
 
--- Enable ignore case and hls. --
-vim.opt.ignorecase = true
-vim.opt.incsearch = true
-vim.opt.smartcase = true
-vim.opt.hls = true
+-- Some usefull settings for searching.
+opt.ignorecase = true
+opt.incsearch = true
+opt.smartcase = true
+opt.hls = false
 
 -- Setup tabs.
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-vim.opt.expandtab = true
-vim.opt.autoindent = true
-vim.opt.filetype = "plugin"
-vim.opt.sidescrolloff = 8
-vim.opt.scrolloff = 8
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.softtabstop = 4
+opt.expandtab = true
+opt.autoindent = true
+opt.filetype = "plugin"
+opt.sidescrolloff = 8
+opt.scrolloff = 8
 
--- Enable more colors. --
-vim.opt.termguicolors = true
+-- Enable full colors support.
+opt.termguicolors = true
 
--- Enable clipboard. --
-vim.opt.clipboard = "unnamedplus"
+-- Enable clipboard.
+opt.clipboard = "unnamedplus"
 
 -- Setup encoding. --
-vim.opt.fileencoding = "utf-8"
+opt.fileencoding = "utf-8"
 
--- More flush buffer to file.
-vim.opt.updatetime = 300
+opt.spelllang = { "en_us", "ru" }
+opt.completeopt = { "menuone", "noselect" }
 
-vim.opt.completeopt = { "menuone", "noselect" }
-vim.opt.conceallevel = 3
-vim.opt.concealcursor = "nv"
-vim.opt.hidden = true
-vim.opt.showmode = false
-vim.opt.spelllang = { 'en_us', 'ru' }
+opt.completeopt = { "menuone", "noselect" }
+opt.conceallevel = 3
+opt.concealcursor = "nv"
+opt.hidden = true
+opt.showmode = false
+opt.spelllang = { "en_us", "ru" }
+
+opt.updatetime = 50
+
+-- Set colorscheme.
+vim.cmd("colorscheme catppuccin")

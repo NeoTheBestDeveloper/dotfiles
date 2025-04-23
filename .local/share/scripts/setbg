@@ -16,7 +16,7 @@ wal -s -i "$wall"
 
 xwallpaper --zoom "$bg_loc"
 xdotool key super+F5
-
+cp ~/.cache/wal/colors-kitty.conf ~/.config/kitty
 dunst_xr
 pkill dunst  
 dunst &
